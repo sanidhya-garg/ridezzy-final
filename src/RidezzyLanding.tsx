@@ -8,7 +8,10 @@ import amit from "./assets/amit.jpeg";
 import satya from "./assets/satya.jpeg";
 import Testimonial from "./components/Testimonial";
 import appImage from "./assets/app.jpeg"
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import News from "./components/News";
+import Product from "./components/Product"
 import  About from "./components/About"
 import Hero from "./components/Hero";
 import SmartSwapNetwork from "./components/SmartSwapNetwork";
@@ -92,7 +95,7 @@ export default function RidezzyLanding() {
 
 
      <Hero />
-
+<Product />
       {/* About Us Section */}
       <About />
       
