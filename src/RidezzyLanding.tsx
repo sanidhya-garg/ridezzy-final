@@ -1,9 +1,7 @@
 
-import { Link } from "react-router-dom";
 
 import Testimonial from "./components/Testimonial";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import logo from './assets/logo.jpeg';
 import Product from "./components/Product"
 import Career from "./components/Career"
 import  About from "./components/About"
@@ -11,6 +9,7 @@ import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import App from "./components/App";
 import Navbar from "./Navbar";
+import Contact from "./components/contact";
 
 export default function RidezzyLanding() {
     
@@ -23,6 +22,7 @@ export default function RidezzyLanding() {
       <Product />
 <Career />
 <Testimonial/>
+<Contact />
 <Footer />
       {/* Google Map Section */}
      
