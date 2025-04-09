@@ -109,88 +109,10 @@ export default function RidezzyLanding() {
       {/* Features Section */}
      
       <Testimonial/>
-      <div className="bg-white min-h-screen flex justify-center items-center p-8">
-      <section className="w-full flex justify-center bg-yellow-50 py-12 px-6">
-     <div className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-12 px-6 py-12">
-  
-  {/* Left Side - Animated Image */}
-  <motion.div
-    className="w-full md:w-1/2 flex justify-center"
-    initial={{ opacity: 0, x: -50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut", type: "spring" }}
-    whileHover={{ scale: 1.05, rotate: 2 }}
-  >
-    <motion.img
-      src={appImage}
-      alt="Mobile App"
-      className="w-[270px] h-[480px] object-cover rounded-xl shadow-xl border-4 border-yellow-400"
-      animate={{
-        y: [0, -10, 0], // Floating effect
-        transition: {
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        },
-      }}
-    />
-  </motion.div>
-
-  {/* Right Side - Animated Text */}
-  <motion.div
-    className="w-full md:w-1/2 text-left"
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-  >
-    <p className="text-yellow-500 font-semibold text-sm uppercase tracking-wide">
-      01 — Seamless Experience
-    </p>
-    <h2 className="text-4xl font-extrabold text-gray-900 mt-2 leading-snug">
-      Effortless Installation & Intuitive Experience
-    </h2>
-
-    {/* Animated List Items */}
-    <motion.ul
-      className="mt-6 space-y-4 text-gray-800 text-lg"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: 0.2 },
-        },
-      }}
-    >
-      {[
-        "Quick, hassle-free installation process.",
-        "User-friendly interface for all ages.",
-        "Locate nearby battery swap stations instantly.",
-        "Check real-time battery availability with ease.",
-        "Seamlessly manage your account & preferences.",
-      ].map((text, index) => (
-        <motion.li
-          key={index}
-          className="flex items-center gap-3"
-          variants={{
-            hidden: { opacity: 0, y: 10 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          whileHover={{ scale: 1.1, color: "#facc15" }} // Glowing effect on hover
-        >
-          <span className="text-yellow-500 text-xl">✔️</span> {text}
-        </motion.li>
-      ))}
-    </motion.ul>
-  </motion.div>
-</div>
-    </section>
-    </div>
+     
     {/* Meet the Team Section */}
    
-<SmartSwapNetwork />
+
 <Career />
 {/*contact us*/}
 <section className="py-12 bg-white">
@@ -238,82 +160,89 @@ export default function RidezzyLanding() {
       </div>
 
       {/* Contact Form */}
-      <div className="bg-yellow-50 rounded-xl p-6 shadow-lg border-2 border-yellow-100 hover:shadow-xl transition-shadow duration-300">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Send Us a Message</h3>
-        <form className="space-y-4">
-          {/* Full Name */}
-          <div>
-            <label htmlFor="fullName" className="block text-base font-medium text-gray-700">Full Name*</label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              className="w-full px-3 py-2 rounded-lg border-2 border-yellow-100 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-200 outline-none"
-              placeholder="Enter your full name"
-              required
-            />
-          </div>
+      <div className="bg-yellow-50 rounded-3xl p-10 border border-yellow-100 shadow-md max-w-3xl mx-auto transition hover:shadow-lg">
+  <h2 className="text-3xl font-bold text-gray-900 text-center mb-8 tracking-tight">
+    Contact Our Team
+  </h2>
 
-          {/* Phone Number */}
-          <div>
-            <label htmlFor="phoneNumber" className="block text-base font-medium text-gray-700">Phone Number*</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              className="w-full px-3 py-2 rounded-lg border-2 border-yellow-100 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-200 outline-none"
-              placeholder="Enter your phone number"
-              required
-            />
-          
-          </div>
+  <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* Full Name */}
+    <div className="col-span-1">
+      <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+        Full Name<span className="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        required
+        placeholder="e.g. Anshdeep Singh"
+        className="w-full px-4 py-3 rounded-xl border border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white text-gray-900"
+      />
+    </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-base font-medium text-gray-700">Email*</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full px-3 py-2 rounded-lg border-2 border-yellow-100 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-200 outline-none"
-              placeholder="Enter your email"
-              required
-            />
-            
-          </div>
+    {/* Phone Number */}
+    <div className="col-span-1">
+      <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+        Phone Number<span className="text-red-500">*</span>
+      </label>
+      <input
+        type="tel"
+        id="phoneNumber"
+        name="phoneNumber"
+        required
+        placeholder="+91 1234567890"
+        className="w-full px-4 py-3 rounded-xl border border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white text-gray-900"
+      />
+    </div>
 
-          {/* State and City Dropdowns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-         
-            
-          </div>
+    {/* Email */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        Email<span className="text-red-500">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        className="w-full px-4 py-3 rounded-xl border border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white text-gray-900"
+      />
+    </div>
 
-          {/* Reason for Contact */}
-          <div>
-            <label htmlFor="reason" className="block text-base font-medium text-gray-700">Reason for Contact*</label>
-            <textarea
-              id="reason"
-              name="reason"
-              rows="3"
-              className="w-full px-3 py-2 rounded-lg border-2 border-yellow-100 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-200 outline-none"
-              placeholder="Tell us how we can help"
-              required
-            ></textarea>
-          </div>
+    {/* Message */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-1">
+        Message<span className="text-red-500">*</span>
+      </label>
+      <textarea
+        id="reason"
+        name="reason"
+        required
+        placeholder="How can we help you?"
+        rows={4}
+        className="w-full px-4 py-3 rounded-xl border border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white text-gray-900 resize-none"
+      ></textarea>
+    </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-yellow-500 text-white font-semibold py-2 rounded-lg hover:bg-yellow-600 transition-colors duration-300"
-          >
-            Send Message
-          </button>
-        </form>
-      </div>
+    {/* Submit Button */}
+    <div className="col-span-1 md:col-span-2">
+      <button
+        type="submit"
+        className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-xl transition-colors duration-300 shadow-md"
+      >
+        Send Message
+      </button>
+    </div>
+  </form>
+</div>
+
+
     </div>
   </div>
 </section>
-<News />
+
 <Footer />
       {/* Google Map Section */}
      

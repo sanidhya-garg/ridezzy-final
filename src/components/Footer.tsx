@@ -1,69 +1,78 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#060E26] text-white py-12 px-6 md:px-20">
-      <div className="grid md:grid-cols-5 gap-10">
-        {/* Logo */}
+    <footer className="bg-[#060E26] text-white px-6 md:px-20 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+        {/* Logo + Description */}
         <div className="col-span-1">
-          <img src="/images/ridezzy-logo.png" alt="Ridezzy" className="h-10 mb-6" />
+         <p>Ridezzy</p>
+          <p className="text-sm text-gray-400 mt-2">
+            Driving the future of urban mobility.
+          </p>
+          
         </div>
 
-        {/* Links: Column 1 */}
-        <div className="space-y-2 text-sm">
-          <h4 className="font-semibold text-white mb-2">Company</h4>
-          <ul className="space-y-1 text-gray-400">
-            <li>Dost</li>
-            <li>Partner</li>
-            <li>Careers</li>
-            <li>Blogs</li>
-            <li>Newsroom</li>
-            <li>FAQs</li>
-            <li>About</li>
-            <li>Contact Us</li>
+        {/* Company Links */}
+        <div>
+          <h4 className="font-semibold text-yellow-400 text-sm mb-4 uppercase tracking-wider">
+            Company
+          </h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li className="hover:text-yellow-300 transition">Dost</li>
+            <li className="hover:text-yellow-300 transition">Partner</li>
+            <li className="hover:text-yellow-300 transition">Careers</li>
+            <li className="hover:text-yellow-300 transition">Blogs</li>
+            <li className="hover:text-yellow-300 transition">Newsroom</li>
+            <li className="hover:text-yellow-300 transition">FAQs</li>
+            <li className="hover:text-yellow-300 transition">About</li>
+            <li className="hover:text-yellow-300 transition">Contact Us</li>
           </ul>
         </div>
 
-        {/* Links: Column 2 */}
-        <div className="space-y-2 text-sm">
-          <h4 className="font-semibold text-white mb-2">Products</h4>
-          <ul className="space-y-1 text-gray-400">
-            <li>Wynn XP</li>
-            <li>Miracle NV</li>
-            <li>DeX NV</li>
-            <li>Miracle GR</li>
-            <li>DeX GR</li>
+        {/* Product Links */}
+        <div>
+          <h4 className="font-semibold text-yellow-400 text-sm mb-4 uppercase tracking-wider">
+            Products
+          </h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li className="hover:text-yellow-300 transition">Wynn XP</li>
+            <li className="hover:text-yellow-300 transition">Miracle NV</li>
+            <li className="hover:text-yellow-300 transition">DeX NV</li>
+            <li className="hover:text-yellow-300 transition">Miracle GR</li>
+            <li className="hover:text-yellow-300 transition">DeX GR</li>
           </ul>
         </div>
 
         {/* Address */}
-        <div className="text-sm text-gray-400">
-          <h4 className="font-semibold text-white mb-2">Address</h4>
-          <p>
-            Ridezzy, 2nd Floor, Etamin Block (Wing A), Prestige Tech Park,
-            Kadubeesanahalli, Bengaluru, Karnataka 560103 India
+        <div>
+          <h4 className="font-semibold text-yellow-400 text-sm mb-4 uppercase tracking-wider">
+            Address
+          </h4>
+          <p className="text-sm text-gray-400 leading-relaxed">
+            Ridezzy, 2nd Floor, Etamin Block (Wing A),<br />
+            Prestige Tech Park, Kadubeesanahalli,<br />
+            Bengaluru, Karnataka 560103, India
           </p>
         </div>
 
-        {/* App & Social */}
-        <div className="space-y-4 text-sm">
-          
-
-          <div>
-            <h4 className="font-semibold text-white mt-4 mb-2">Follow Us on</h4>
-            <div className="flex gap-4 text-gray-400 text-xl">
-              <i className="fab fa-facebook-f"></i>
-              <i className="fab fa-instagram"></i>
-              <i className="fab fa-linkedin-in"></i>
-              <i className="fab fa-twitter"></i>
-              <i className="fab fa-youtube"></i>
-            </div>
+        {/* Social Links */}
+        <div>
+          <h4 className="font-semibold text-yellow-400 text-sm mb-4 uppercase tracking-wider">
+            Follow Us
+          </h4>
+          <div className="flex gap-4 text-gray-400 text-xl">
+            <i className="fab fa-facebook-f hover:text-yellow-300 transition"></i>
+            <i className="fab fa-instagram hover:text-yellow-300 transition"></i>
+            <i className="fab fa-linkedin-in hover:text-yellow-300 transition"></i>
+            <i className="fab fa-twitter hover:text-yellow-300 transition"></i>
+            <i className="fab fa-youtube hover:text-yellow-300 transition"></i>
           </div>
         </div>
       </div>
 
-      <hr className="border-t border-gray-700 my-8" />
+      <hr className="border-t border-gray-700 my-10" />
 
-      <p className="text-center text-sm text-gray-500">
-        Copyright © {new Date().getFullYear()} Ridezzy Pvt Ltd
+      <p className="text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} Ridezzy Pvt Ltd. All rights reserved.
       </p>
     </footer>
   );

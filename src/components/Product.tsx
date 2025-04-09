@@ -18,14 +18,14 @@ export default function ProductSection() {
   };
 
   return (
-    <section className="relative bg-white py-16 px-6 md:px-20 overflow-hidden">
+    <section className="relative bg-white py-10 px-6 md:px-20 overflow-hidden">
       {/* Background Blobs */}
       <div className="absolute top-[-120px] left-[-120px] w-[300px] h-[300px] bg-[#fff3b3] rounded-full blur-2xl opacity-30 z-0" />
       <div className="absolute bottom-[-80px] right-[-100px] w-[250px] h-[250px] bg-[#fff3b3] rounded-full blur-2xl opacity-30 z-0" />
 
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-        {/* Left Text */}
-        <div className="space-y-8">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+        {/* Text Side */}
+        <div className="space-y-6">
           <h2 className="text-4xl font-bold text-black">{product.name}</h2>
           <p className="text-base text-gray-800 leading-relaxed max-w-lg">
             {product.description}
@@ -33,7 +33,10 @@ export default function ProductSection() {
 
           <div className="grid grid-cols-2 gap-4 max-w-md">
             {product.features.map((feat, idx) => (
-              <div key={idx} className="flex items-start gap-3 bg-[#fff8d0] px-4 py-3 rounded-md shadow-sm">
+              <div
+                key={idx}
+                className="flex items-start gap-3 bg-[#fff8d0] px-4 py-2 rounded-md shadow-sm"
+              >
                 <div className="text-yellow-500">{feat.icon}</div>
                 <div>
                   <p className="text-sm text-gray-600">{feat.title}</p>
@@ -48,15 +51,15 @@ export default function ProductSection() {
           </button>
         </div>
 
-        {/* Right Image - LARGE */}
-        <div className="relative flex justify-center items-center h-[500px] md:h-[600px]">
-          <span className="absolute text-[90px] md:text-[180px] font-black text-black opacity-5 z-0 select-none">
+        {/* Big Image Side */}
+        <div className="relative flex justify-center items-center h-[450px]">
+          <span className="absolute text-[90px] md:text-[160px] font-black text-black opacity-5 z-0 select-none">
             {product.name}
           </span>
           <img
             src={product.image}
             alt={product.name}
-            className="relative z-10 h-full w-auto object-contain scale-[1.3]"
+            className="relative z-10 object-contain h-full w-auto scale-[1.8] -translate-y-4"
           />
         </div>
       </div>
