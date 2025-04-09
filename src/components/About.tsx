@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import aboutImg from '../assets/delivery.jpeg';
 
 interface Word {
   id: string;
@@ -23,7 +22,7 @@ const AboutUs = () => {
 
   const isMobile = window.innerWidth < 768;
 
-  const highlightAllWords = () => {
+  const highlightAllWords = useCallback(() => {
     const allIds = new Set(words.map((word) => word.id));
     highlightedWords.current = allIds;
     setWords((prev) =>
@@ -32,7 +31,7 @@ const AboutUs = () => {
         highlighted: true,
       }))
     );
-  };
+  }, [words]);
 
   const handleScroll = useCallback(() => {
     if (!sectionRef.current || isMobile) return;
@@ -72,7 +71,7 @@ const AboutUs = () => {
       handleScroll();
       return () => window.removeEventListener('scroll', scrollHandler);
     }
-  }, [handleScroll, isMobile]);
+  }, [handleScroll, highlightAllWords, isMobile]);
 
   return (
     <section
@@ -84,11 +83,9 @@ const AboutUs = () => {
         fontFamily: "'Inter', sans-serif",
         boxSizing: 'border-box',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '3rem',
+        justifyContent: 'center',
       }}
     >
       <style>
@@ -110,7 +107,6 @@ const AboutUs = () => {
 
           @media (max-width: 768px) {
             .about-section {
-              flex-direction: column !important;
               text-align: center;
             }
 
@@ -122,16 +118,11 @@ const AboutUs = () => {
             .about-heading {
               text-align: center !important;
             }
-
-            .about-image {
-              display: none !important;
-            }
           }
         `}
       </style>
 
-      {/* Text Section */}
-      <div className="about-text" style={{ flex: '1 1 55%', maxWidth: '55%' }}>
+      <div className="about-text" style={{ maxWidth: '820px', width: '100%' }}>
         <h2
           className="about-heading"
           style={{
@@ -152,7 +143,6 @@ const AboutUs = () => {
             lineHeight: '1.8',
             color: '#444',
             textAlign: 'left',
-            maxWidth: '100%',
           }}
         >
           {words.map((word) => (
@@ -173,29 +163,6 @@ const AboutUs = () => {
             </React.Fragment>
           ))}
         </p>
-      </div>
-
-      {/* Image Section */}
-      <div
-        className="about-image"
-        style={{
-          flex: '1 1 40%',
-          maxWidth: '40%',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-        }}
-      >
-        <img
-          src={aboutImg}
-          alt="Delivery with Ridezzy"
-          style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'contain',
-            borderRadius: '12px',
-          }}
-        />
       </div>
     </section>
   );

@@ -1,63 +1,62 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // Hamburger and close icons
+import { NavLink, Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import logo from "./assets/logo.jpeg"; // Make sure to update this path
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const navItems = ["About","Bana", "Contact"];
+
   return (
-    <nav className="bg-gray-900 text-white p-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        {/* Logo in center for mobile, left for desktop */}
-        <div className="flex-1 flex justify-center md:justify-start">
-          <h1 className="text-xl font-bold">Ridezzy</h1>
-        </div>
+    <header className="bg-white bg-opacity-95 backdrop-blur-md text-black px-6 py-4 fixed top-0 left-0 w-full flex justify-between items-center shadow-md z-50 border-b border-gray-200">
+      {/* Logo */}
+      <Link to="/" className="flex items-center">
+        <img
+          src={logo}
+          alt="Ridezzy Logo"
+          className="w-32 h-auto object-contain"
+        />
+      </Link>
 
-        {/* Hamburger - shown only on mobile */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-6">
-          {["Home", "About", "Contact"].map((page) => (
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex space-x-8 text-lg font-medium">
+        {navItems.map((item, index) => (
+          <li key={index} className="list-none relative group">
             <NavLink
-              key={page}
-              to={`/${page === "Home" ? "" : page.toLowerCase()}`}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-400 border-b-2 border-blue-400"
-                  : "text-white hover:text-blue-400"
-              }
+              to={`/${item.toLowerCase()}`}
+              className="text-gray-700 hover:text-yellow-500 transition-all duration-300 ease-in-out"
             >
-              {page}
+              {item}
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </NavLink>
-          ))}
-        </div>
+          </li>
+        ))}
+      </nav>
+
+      {/* Hamburger for Mobile */}
+      <div className="md:hidden">
+        <button onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden mt-4 flex flex-col items-center space-y-4">
-          {["Home", "About", "Contact"].map((page) => (
+        <div className="absolute top-full left-0 w-full bg-white shadow-lg px-6 py-4 flex flex-col space-y-4 md:hidden z-40">
+          {navItems.map((item, index) => (
             <NavLink
-              key={page}
-              to={`/${page === "Home" ? "" : page.toLowerCase()}`}
+              key={index}
+              to={`/${item.toLowerCase()}`}
               onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-400 border-b-2 border-blue-400"
-                  : "text-white hover:text-blue-400"
-              }
+              className="text-gray-800 hover:text-yellow-500 font-medium transition-all duration-300"
             >
-              {page}
+              {item}
             </NavLink>
           ))}
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import bgImage from "../assets/hero image.jpg";
 
+// Moved outside to avoid being a dependency in useEffect
+const words = [
+  "Go Quick in E-Commerce",
+  "Powering EV Logistics",
+  "Scale Your Fleet with Ease",
+];
+
 const HeroSection = () => {
-  const words = [
-    "Go Quick in E-Commerce",
-    "Powering EV Logistics",
-    "Scale Your Fleet with Ease",
-  ];
   const [index, setIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -49,7 +51,9 @@ const HeroSection = () => {
             transition={{ delay: 2.2, duration: 0.6 }}
             className="text-lg text-gray-700 font-medium mt-2"
           >
-            Accelerating the future of deliveries with seamless efficiency and reliability. Experience logistics designed to keep pace with the speed of modern commerce.
+            Accelerating the future of deliveries with seamless efficiency and
+            reliability. Experience logistics designed to keep pace with the
+            speed of modern commerce.
           </motion.p>
         </div>
       </div>
