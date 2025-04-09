@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import aboutImg from '../assets/delivery.jpeg';
 
 interface Word {
   id: string;
@@ -60,22 +61,23 @@ const AboutUs = () => {
     <section
       ref={sectionRef}
       style={{
-        padding: '10vh 10vw',
-        backgroundColor: '#fdfdfd',
+        padding: '6vh 8vw',
+        background: '#fefefe',
         fontFamily: "'Inter', sans-serif",
-        minHeight: '100vh',
         boxSizing: 'border-box',
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '3rem',
       }}
     >
       <style>
         {`
-          @keyframes fadeInUp {
+          @keyframes fadeInFloat {
             0% {
-              transform: translateY(8px);
+              transform: translateY(10px);
               opacity: 0;
             }
             100% {
@@ -85,55 +87,82 @@ const AboutUs = () => {
           }
 
           .highlighted {
-            animation: fadeInUp 0.4s ease-out forwards;
+            animation: fadeInFloat 0.4s ease-out forwards;
+          }
+
+          @media (max-width: 768px) {
+            .about-section {
+              flex-direction: column !important;
+            }
           }
         `}
       </style>
 
-      <div style={{ marginBottom: '3rem', maxWidth: '1000px' }}>
+      {/* Text Section */}
+      <div style={{ flex: '1 1 55%', maxWidth: '55%' }}>
         <h2
           style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontSize: 'clamp(2rem, 4vw, 2.75rem)',
             fontWeight: 700,
             color: '#1e1e1e',
-            marginBottom: '0.5rem',
+            marginBottom: '1.2rem',
             letterSpacing: '0.5px',
             textAlign: 'left',
           }}
         >
           <span style={{ color: '#FFD600' }}>About</span> Ridezzy
         </h2>
+
+        <p
+          style={{
+            fontSize: 'clamp(1rem, 1.3vw, 1.2rem)',
+            lineHeight: '1.8',
+            color: '#444',
+            textAlign: 'left',
+            maxWidth: '100%',
+          }}
+        >
+          {words.map((word) => (
+            <React.Fragment key={word.id}>
+              <span
+                data-id={word.id}
+                className={`about-word ${word.highlighted ? 'highlighted' : ''}`}
+                style={{
+                  display: 'inline-block',
+                  transition: 'all 0.3s ease-out',
+                  color: word.highlighted ? '#1e1e1e' : '#bbb',
+                  fontWeight: word.highlighted ? 600 : 400,
+                  marginRight: '0.3em',
+                }}
+              >
+                {word.text}
+              </span>
+            </React.Fragment>
+          ))}
+        </p>
       </div>
 
-      <p
+      {/* Clean Image Section */}
+      <div
         style={{
-          fontSize: 'clamp(1.5rem, 2vw, 2rem)',
-          lineHeight: '1.8',
-          color: '#444',
-          maxWidth: '1000px',
-          letterSpacing: '0.3px',
-          textAlign: 'left',
+          flex: '1 1 40%',
+          maxWidth: '40%',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
         }}
       >
-        {words.map((word) => (
-          <React.Fragment key={word.id}>
-            <span
-              data-id={word.id}
-              className={`about-word ${word.highlighted ? 'highlighted' : ''}`}
-              style={{
-                display: 'inline-block',
-                transition: 'all 0.3s ease-out',
-                color: word.highlighted ? '#1e1e1e' : '#aaa',
-                fontWeight: word.highlighted ? 600 : 400,
-                marginRight: '0.25em',
-                whiteSpace: 'pre-wrap',
-              }}
-            >
-              {word.text}
-            </span>
-          </React.Fragment>
-        ))}
-      </p>
+        <img
+          src={aboutImg}
+          alt="Delivery with Ridezzy"
+          style={{
+            width: '100%',
+            height: 'auto',
+            objectFit: 'contain',
+            borderRadius: '12px',
+          }}
+        />
+      </div>
     </section>
   );
 };

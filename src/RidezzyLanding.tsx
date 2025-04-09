@@ -9,9 +9,10 @@ import satya from "./assets/satya.jpeg";
 import Testimonial from "./components/Testimonial";
 import appImage from "./assets/app.jpeg"
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import logo from './assets/logo.jpeg';
 import News from "./components/News";
 import Product from "./components/Product"
+import Career from "./components/Career"
 import  About from "./components/About"
 import Hero from "./components/Hero";
 import SmartSwapNetwork from "./components/SmartSwapNetwork";
@@ -61,37 +62,43 @@ export default function RidezzyLanding() {
     
     <div className="bg-gray-100 text-gray-900">
       {/* Taskbar Header */}
-      <header className="bg-black bg-opacity-80 backdrop-blur-md text-white px-6 py-4 fixed top-0 left-0 w-full flex justify-between items-center shadow-lg z-50 border-b border-gray-700">
-  {/* Logo */}
-  <h1 className="text-4xl font-bold tracking-wide text-yellow-400">
-    Ridezzy
-  </h1>
+      (
+        <header className="bg-white bg-opacity-95 backdrop-blur-md text-black px-6 py-4 fixed top-0 left-0 w-full flex justify-between items-center shadow-md z-50 border-b border-gray-200">
+      
+      {/* Logo Image */}
+      <Link to="/" className="flex items-center">
+        <img
+          src={logo}
+          alt="Ridezzy Logo"
+          className="w-32 h-auto object-contain" // Resize logo here
+        />
+      </Link>
 
-  {/* Navigation */}
-  <nav>
-    <ul className="flex space-x-8 text-lg font-medium">
-      {["Home", "About", "Features", "Office"].map((item, index) => (
-        <li key={index} className="relative group">
-          <Link
-            to={`/${item.toLowerCase()}`}
-            className="text-gray-300 hover:text-yellow-400 transition-all duration-300 ease-in-out"
-          >
-            {item}
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </nav>
+      {/* Navigation */}
+      <nav>
+        <ul className="flex space-x-8 text-lg font-medium">
+          {["Home", "About", "Features", "Office"].map((item, index) => (
+            <li key={index} className="relative group">
+              <Link
+                to={`/${item.toLowerCase()}`}
+                className="text-gray-700 hover:text-yellow-500 transition-all duration-300 ease-in-out"
+              >
+                {item}
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-  {/* Call-to-Action Button */}
-  <Link
-    to="/get-started"
-    className="bg-yellow-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-all duration-300"
-  >
-    Get Started
-  </Link>
-</header>
+      {/* CTA Button */}
+      <Link
+        to="/get-started"
+        className="bg-yellow-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-all duration-300"
+      >
+        Get Started
+      </Link>
+    </header>
 
 
      <Hero />
@@ -182,54 +189,9 @@ export default function RidezzyLanding() {
     </section>
     </div>
     {/* Meet the Team Section */}
-   <section className="py-20 pb-32 min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
-  <div className="container mx-auto px-6">
-    <h2 className="text-5xl font-bold text-yellow-400 text-center mb-16">Meet Our Team</h2>
-    <div className="flex flex-wrap justify-center gap-10">
-      {[
-        { img: amar, name: "Amar Kumar", role: "Founder & CEO", linkedin: "https://www.linkedin.com/in/amar-kumar23/" },
-        { img: sanidhya, name: "Sanidhya Garg", role: "Co-Founder & COO", linkedin: "https://www.linkedin.com/in/sanidhya-garg-iitd/" },
-        { img: satya, name: "Satya Vyas", role: "Advisor & Mentor", linkedin: "https://www.linkedin.com/in/satyavyas/" },
-        { img: anshdeep, name: "Anshdeep Singh", role: "Software Developer", linkedin: "https://www.linkedin.com/in/anshdeep-singh-a01649231/" },
-        { img: amit, name: "Amit Kumar", role: "Advisor & Mentor", linkedin: "#" }
-      ].map((member, index) => (
-        <motion.div 
-          key={index}
-          className="w-[350px] bg-gray-800 bg-opacity-90 backdrop-blur-lg rounded-xl shadow-lg border border-yellow-500 hover:border-yellow-400 p-6 flex items-center space-x-6 transition-transform transform hover:-translate-y-2"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <img 
-            src={member.img} 
-            alt={member.name} 
-            className="w-20 h-20 object-cover rounded-full border-4 border-yellow-600 shadow-md"
-          />
-          <div>
-            <h3 className="text-xl font-bold text-yellow-400">{member.name}</h3>
-            <p className="text-lg text-gray-300">{member.role}</p>
-            {member.linkedin !== "#" && (
-              <a 
-                href={member.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center text-yellow-500 hover:text-yellow-400 transition-colors duration-300" 
-              >
-                <svg className="w-5 h-5 fill-current mr-1" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.48c0-1.3-.47-2.18-1.65-2.18-.9 0-1.44.61-1.68 1.2-.09.21-.11.51-.11.81v5.65h-3s.04-9.17 0-10.13h3v1.44c.4-.61 1.12-1.47 2.74-1.47 2 0 3.5 1.29 3.5 4.06v6.1z"/>
-                </svg>
-                <span className="font-medium">View Profile</span>
-              </a>
-            )}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+   
 <SmartSwapNetwork />
-
+<Career />
 {/*contact us*/}
 <section className="py-12 bg-white">
   <div className="container mx-auto px-6">
