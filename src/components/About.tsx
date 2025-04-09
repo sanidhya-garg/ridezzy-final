@@ -21,8 +21,21 @@ const AboutUs = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const highlightedWords = useRef<Set<string>>(new Set());
 
+  const isMobile = window.innerWidth < 768;
+
+  const highlightAllWords = () => {
+    const allIds = new Set(words.map((word) => word.id));
+    highlightedWords.current = allIds;
+    setWords((prev) =>
+      prev.map((word) => ({
+        ...word,
+        highlighted: true,
+      }))
+    );
+  };
+
   const handleScroll = useCallback(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || isMobile) return;
 
     const triggerPoint = window.innerHeight * 0.85;
     const wordElements = sectionRef.current.querySelectorAll('.about-word');
@@ -48,18 +61,23 @@ const AboutUs = () => {
         }))
       );
     }
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
-    const scrollHandler = () => requestAnimationFrame(handleScroll);
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', scrollHandler);
-  }, [handleScroll]);
+    if (isMobile) {
+      highlightAllWords();
+    } else {
+      const scrollHandler = () => requestAnimationFrame(handleScroll);
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+      handleScroll();
+      return () => window.removeEventListener('scroll', scrollHandler);
+    }
+  }, [handleScroll, isMobile]);
 
   return (
     <section
       ref={sectionRef}
+      className="about-section"
       style={{
         padding: '6vh 8vw',
         background: '#fefefe',
@@ -93,14 +111,29 @@ const AboutUs = () => {
           @media (max-width: 768px) {
             .about-section {
               flex-direction: column !important;
+              text-align: center;
+            }
+
+            .about-text {
+              max-width: 100% !important;
+              text-align: center !important;
+            }
+
+            .about-heading {
+              text-align: center !important;
+            }
+
+            .about-image {
+              display: none !important;
             }
           }
         `}
       </style>
 
       {/* Text Section */}
-      <div style={{ flex: '1 1 55%', maxWidth: '55%' }}>
+      <div className="about-text" style={{ flex: '1 1 55%', maxWidth: '55%' }}>
         <h2
+          className="about-heading"
           style={{
             fontSize: 'clamp(2rem, 4vw, 2.75rem)',
             fontWeight: 700,
@@ -142,8 +175,9 @@ const AboutUs = () => {
         </p>
       </div>
 
-      {/* Clean Image Section */}
+      {/* Image Section */}
       <div
+        className="about-image"
         style={{
           flex: '1 1 40%',
           maxWidth: '40%',

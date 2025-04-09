@@ -13,6 +13,7 @@ import logo from './assets/logo.jpeg';
 import News from "./components/News";
 import Product from "./components/Product"
 import Career from "./components/Career"
+import App from "./components/App"
 import  About from "./components/About"
 import Hero from "./components/Hero";
 import SmartSwapNetwork from "./components/SmartSwapNetwork";
@@ -102,18 +103,11 @@ export default function RidezzyLanding() {
 
 
      <Hero />
-<Product />
-      {/* About Us Section */}
-      <About />
-      
-      {/* Features Section */}
-     
-      <Testimonial/>
-     
-    {/* Meet the Team Section */}
-   
 
+      <About />
+      <Product />
 <Career />
+<Testimonial/>
 {/*contact us*/}
 <section className="py-12 bg-white">
   <div className="container mx-auto px-6">

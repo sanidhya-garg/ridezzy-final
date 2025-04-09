@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../assets/img_9118-removebg-preview (1).png";
+import image from "../assets/RidezzyScooter.png";
 import { Zap, BatteryCharging, Navigation } from "lucide-react";
 
 export default function ProductSection() {
@@ -53,13 +53,13 @@ export default function ProductSection() {
 
         {/* Big Image Side */}
         <div className="relative flex justify-center items-center h-[450px]">
-          <span className="absolute text-[90px] md:text-[160px] font-black text-black opacity-5 z-0 select-none">
+          <span className="absolute text-[90px] md:text-[200px] font-black text-black opacity-5 z-0 h-125 select-none">
             {product.name}
           </span>
           <img
             src={product.image}
             alt={product.name}
-            className="relative z-10 object-contain h-full w-auto scale-[1.8] -translate-y-4"
+            className="relative z-10 object-contain h-full w-auto scale-[1.0] -translate-y-4"
           />
         </div>
       </div>
