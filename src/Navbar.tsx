@@ -6,7 +6,7 @@ import logo from "./assets/logo.jpeg"; // Make sure to update this path
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = ["Home", "About", "Features", "Office"];
+  const navItems = ["About","Contact"];
 
   return (
     <header className="bg-white bg-opacity-95 backdrop-blur-md text-black px-6 py-4 fixed top-0 left-0 w-full flex justify-between items-center shadow-md z-50 border-b border-gray-200">
@@ -34,14 +34,6 @@ const Navbar = () => {
         ))}
       </nav>
 
-      {/* CTA */}
-      <Link
-        to="/get-started"
-        className="hidden md:inline bg-yellow-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-all duration-300"
-      >
-        Get Started
-      </Link>
-
       {/* Hamburger for Mobile */}
       <div className="md:hidden">
         <button onClick={() => setIsOpen(!isOpen)}>
@@ -62,13 +54,6 @@ const Navbar = () => {
               {item}
             </NavLink>
           ))}
-          <Link
-            to="/get-started"
-            onClick={() => setIsOpen(false)}
-            className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition"
-          >
-            Get Started
-          </Link>
         </div>
       )}
     </header>

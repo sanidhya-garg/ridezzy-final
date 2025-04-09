@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RidezzyLanding from "./RidezzyLanding";
 import AboutUs from "./components/AboutUs";  // No need for .tsx extension
+import ContactPage from "./components/contactpage";
+import BlogPage from "./components/Blog";
 
 function App() {
   return (
@@ -8,8 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<RidezzyLanding />} />
         <Route path="/about" element={<AboutUs />} />  {/* Corrected this line */}
-        <Route path="/features" element={<RidezzyLanding />} />
-        <Route path="/office" element={<RidezzyLanding />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/blog" element={<BlogPage />} /> {/* Placeholder for Bana page */}
       </Routes>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/logo.jpeg"; // Replace with your actual logo path
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -18,11 +19,14 @@ export default function Footer() {
           <h4 className="font-semibold text-yellow-500 text-sm mb-4 uppercase tracking-wider">
             Company
           </h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            {["About", "Bana", "Careers", "Blogs", "Contact Us"].map((item, idx) => (
-              <li key={idx} className="hover:text-yellow-500 transition cursor-pointer">{item}</li>
-            ))}
+          <ul className="space-y-1 text-sm text-gray-600">
+            <li><Link to="/" className="hover:text-yellow-500 transition cursor-pointer">Home</Link></li>
+            <li><Link to="/about" className="hover:text-yellow-500 transition cursor-pointer">About</Link></li>
+            <li><Link to="/contact" className="hover:text-yellow-500 transition cursor-pointer">Contact Us</Link></li>
+            <li><Link to="/bana" className="hover:text-yellow-500 transition cursor-pointer">Bana</Link></li>
+            <li><Link to="/blog" className="hover:text-yellow-500 transition cursor-pointer">Blogs</Link></li>
           </ul>
+
         </div>
 
         {/* Product Links
@@ -45,6 +49,16 @@ export default function Footer() {
           <p className="text-sm text-gray-600 leading-relaxed">
             Plot no 7, B2 block,  Sewak park,<br />
             Uttam Nagar, Delhi 110059, India
+          </p>
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-yellow-500 text-sm mb-4 uppercase tracking-wider">
+            Get in Touch
+          </h4>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            support.cell@ridezzy.com<br />
+            +91 9220424574
           </p>
         </div>
 
