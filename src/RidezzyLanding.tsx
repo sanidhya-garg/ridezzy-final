@@ -1,64 +1,17 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+
 import { Link } from "react-router-dom";
-import anshdeep from "./assets/ansh.jpeg";
-import sanidhya from "./assets/sanidhya.jpeg";
-import amar from "./assets/amar.jpeg";
-import amit from "./assets/amit.jpeg";
-import satya from "./assets/satya.jpeg";
+
 import Testimonial from "./components/Testimonial";
-import appImage from "./assets/app.jpeg"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import logo from './assets/logo.jpeg';
-import News from "./components/News";
 import Product from "./components/Product"
 import Career from "./components/Career"
-import App from "./components/App"
 import  About from "./components/About"
 import Hero from "./components/Hero";
-import SmartSwapNetwork from "./components/SmartSwapNetwork";
 import Footer from "./components/Footer";
-import { MdOutlineSpeed, MdOutlineBatteryChargingFull } from "react-icons/md";
-
-import { FaChargingStation } from "react-icons/fa6";
-import { BsGrid3X3GapFill } from "react-icons/bs";
-
-import { AiOutlineSearch } from "react-icons/ai";
-import { GiNetworkBars } from "react-icons/gi";
 
 export default function RidezzyLanding() {
-    const features = [
-        {
-          icon: <FaChargingStation className="text-red-500 text-3xl" />,
-          title: "Smart Swap Stations",
-          description: "Always on, always connected and always ready for your energy needs.",
-        },
-        {
-          icon: <BsGrid3X3GapFill className="text-red-500 text-3xl" />,
-          title: "Modular Design",
-          description: "Easy to install, all-in-one module, makes deployment in new cities or expansion within a city quick and easy.",
-        },
-        {
-          icon: <MdOutlineBatteryChargingFull className="text-red-500 text-3xl" />,
-          title: "Intelligent Charging",
-          description: "Charging speed varies based on data tracking efficiency of overall network to maximize battery availability while minimizing degradation due to battery aging effects.",
-        },
-        {
-          icon: <AiOutlineSearch className="text-red-500 text-3xl" />,
-          title: "Smart & Self Diagnosing",
-          description: "Software and remote monitoring enables 24/7 performance tracking.",
-        },
-        {
-          icon: <GiNetworkBars className="text-red-500 text-3xl" />,
-          title: "Smart Grid Ready",
-          description: "Designed for bidirectional energy exchange to ensure efficient power distribution.",
-        },
-        {
-          icon: <MdOutlineSpeed className="text-red-500 text-3xl" />,
-          title: "Optimized Energy Utilization",
-          description: "AI-driven analytics ensure efficient power usage and distribution.",
-        },
-      ];
+    
   return (
     
     <div className="bg-gray-100 text-gray-900">
