@@ -7,12 +7,6 @@ const roles = [
     location: "Remote / Delhi NCR",
     applyLink: "https://www.linkedin.com/jobs/view/4179017579/", // Replace with real link
   },
-  {
-    title: "Founder’s Office ",
-    desc: "Work directly with the founders on strategy, growth, and special projects that shape Ridezzy’s future.",
-    location: "Remote / Delhi NCR",
-    applyLink: "https://www.linkedin.com/jobs/view/4179017579/", // Replace with real link
-  },
 ];
 
 const CareerSection = () => {
