@@ -22,7 +22,7 @@ const AboutUs = () => {
 
   const isMobile = window.innerWidth < 768;
 
-  const highlightAllWords = () => {
+  const highlightAllWords = useCallback(() => {
     const allIds = new Set(words.map((word) => word.id));
     highlightedWords.current = allIds;
     setWords((prev) =>
@@ -31,7 +31,7 @@ const AboutUs = () => {
         highlighted: true,
       }))
     );
-  };
+  }, [words]);
 
   const handleScroll = useCallback(() => {
     if (!sectionRef.current || isMobile) return;
@@ -71,7 +71,7 @@ const AboutUs = () => {
       handleScroll();
       return () => window.removeEventListener('scroll', scrollHandler);
     }
-  }, [handleScroll, isMobile]);
+  }, [handleScroll, highlightAllWords, isMobile]);
 
   return (
     <section
@@ -122,7 +122,6 @@ const AboutUs = () => {
         `}
       </style>
 
-      {/* Text Section Only */}
       <div className="about-text" style={{ maxWidth: '820px', width: '100%' }}>
         <h2
           className="about-heading"

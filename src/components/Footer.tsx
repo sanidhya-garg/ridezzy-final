@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../assets/logo.jpeg"; // Replace with your actual logo path
 import { Link } from "react-router-dom";
 

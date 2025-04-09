@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import image from "../assets/RidezzyScooter.png";
 import { Zap, BatteryCharging, Navigation } from "lucide-react";
 
@@ -46,9 +46,11 @@ export default function ProductSection() {
             ))}
           </div>
 
-          <button className="bg-[#FFD400] hover:bg-[#e6c700] transition text-black px-6 py-2 text-base font-semibold rounded-full shadow">
-            {product.cta}
-          </button>
+          <Link to="/bana">
+            <button className="bg-[#FFD400] hover:bg-[#e6c700] transition text-black px-6 py-2 text-base font-semibold rounded-full shadow">
+              {product.cta}
+            </button>
+          </Link>
         </div>
 
         {/* Big Image Side */}
