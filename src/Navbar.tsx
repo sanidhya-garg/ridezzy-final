@@ -6,7 +6,7 @@ import logo from "./assets/logo.jpeg"; // Make sure to update this path
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = ["About","Bana", "Contact"];
+  const navItems = ["About","Bana", "Advertising", "Contact"];
 
   return (
     <header className="bg-white bg-opacity-95 backdrop-blur-md text-black px-6 py-4 fixed top-0 left-0 w-full flex justify-between items-center shadow-md z-50 border-b border-gray-200">
