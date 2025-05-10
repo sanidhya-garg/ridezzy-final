@@ -8,9 +8,7 @@ export default function Footer() {
         {/* Logo + Description */}
         <div className="col-span-1">
           <img src={logo} alt="Ridezzy Logo" className="h-10 mb-4" />
-          <p className="text-sm text-gray-600">
-            EV Fleet for Quick Commerce
-          </p>
+          <p className="text-sm text-gray-600">EV Fleet for Quick Commerce</p>
         </div>
 
         {/* Company Links */}
@@ -25,20 +23,7 @@ export default function Footer() {
             <li><Link to="/bana" className="hover:text-yellow-500 transition cursor-pointer">Bana</Link></li>
             <li><Link to="/blog" className="hover:text-yellow-500 transition cursor-pointer">Blogs</Link></li>
           </ul>
-
         </div>
-
-        {/* Product Links
-        <div>
-          <h4 className="font-semibold text-yellow-500 text-sm mb-4 uppercase tracking-wider">
-            Products
-          </h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            {["Wynn XP", "Miracle NV", "DeX NV", "Miracle GR", "DeX GR"].map((item, idx) => (
-              <li key={idx} className="hover:text-yellow-500 transition cursor-pointer">{item}</li>
-            ))}
-          </ul>
-        </div> */}
 
         {/* Address */}
         <div>
@@ -46,11 +31,12 @@ export default function Footer() {
             Address
           </h4>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Plot no 7, B2 block,  Sewak park,<br />
+            Plot no 7, B2 block, Sewak park,<br />
             Uttam Nagar, Delhi 110059, India
           </p>
         </div>
 
+        {/* Contact */}
         <div>
           <h4 className="font-semibold text-yellow-500 text-sm mb-4 uppercase tracking-wider">
             Get in Touch
@@ -78,9 +64,12 @@ export default function Footer() {
 
       <hr className="border-t border-gray-300 my-10" />
 
-      <p className="text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Ridezzy Logistics Pvt Ltd. All rights reserved.
-      </p>
+      <div className="flex flex-col md:flex-row items-center justify-center text-xs text-gray-500 space-y-2 md:space-y-0 md:space-x-6 text-center">
+        <span>© {new Date().getFullYear()} Ridezzy Logistics Pvt Ltd. All rights reserved.</span>
+        <Link to="/refund-policy" className="hover:text-yellow-600 transition">Refund Policy</Link>
+        <Link to="/terms-of-service" className="hover:text-yellow-600 transition">Terms of Service</Link>
+        <Link to="/privacy-policy" className="hover:text-yellow-600 transition">Privacy Policy</Link>
+      </div>
     </footer>
   );
 }
