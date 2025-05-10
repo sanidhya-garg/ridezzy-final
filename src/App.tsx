@@ -17,7 +17,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />  {/* Corrected this line */}
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} /> {/* Placeholder for Bana page */}
-        <Route path="/bana" element={<BanaPage />} /> {/* Placeholder for Bana page */}
+        <Route path="/pulse" element={<BanaPage />} /> {/* Placeholder for Bana page */}
         <Route path="/advertising" element={<AdvertisementPage />} />
         <Route path="/terms-of-service" element={<TOS />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Placeholder for Privacy Policy */}

@@ -20,7 +20,7 @@ export default function Footer() {
             <li><Link to="/" className="hover:text-yellow-500 transition cursor-pointer">Home</Link></li>
             <li><Link to="/about" className="hover:text-yellow-500 transition cursor-pointer">About</Link></li>
             <li><Link to="/contact" className="hover:text-yellow-500 transition cursor-pointer">Contact Us</Link></li>
-            <li><Link to="/bana" className="hover:text-yellow-500 transition cursor-pointer">Bana</Link></li>
+            <li><Link to="/pulse" className="hover:text-yellow-500 transition cursor-pointer">Pulse</Link></li>
             <li><Link to="/blog" className="hover:text-yellow-500 transition cursor-pointer">Blogs</Link></li>
           </ul>
         </div>

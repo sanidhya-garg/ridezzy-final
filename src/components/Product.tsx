@@ -4,11 +4,11 @@ import { Zap, BatteryCharging, Navigation } from "lucide-react";
 
 export default function ProductSection() {
   const product = {
-    name: "BANA",
+    name: "PULSE",
     description:
       "Revolutionizing urban mobility with futuristic design and unmatched efficiency.",
     image: image,
-    cta: "Discover BANA",
+    cta: "Discover PULSE",
     features: [
       { icon: <Zap size={18} />, title: "Top Speed", value: "65 km/h" },
       { icon: <BatteryCharging size={18} />, title: "Range", value: "120 km" },
@@ -46,7 +46,7 @@ export default function ProductSection() {
             ))}
           </div>
 
-          <Link to="/bana">
+          <Link to="/pulse">
             <button className="bg-[#FFD400] hover:bg-[#e6c700] transition text-black px-6 py-2 text-base font-semibold rounded-full shadow">
               {product.cta}
             </button>

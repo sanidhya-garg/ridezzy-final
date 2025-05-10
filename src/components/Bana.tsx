@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { CheckCircle, Zap, BatteryCharging, Wrench } from "lucide-react";
+import banaImage from "../assets/Screenshot 2025-05-10 214316.png"; // ✅ Import image properly
+import { Zap, BatteryCharging, CheckCircle, Wrench } from "lucide-react";
 
 const BanaProductPage = () => {
   return (
@@ -16,21 +17,21 @@ const BanaProductPage = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-4 leading-tight">BANA™ eV8</h1>
+          <h1 className="text-5xl font-bold mb-4 leading-tight">PULSE™ eV8</h1>
           <h2 className="text-2xl font-semibold text-yellow-500 mb-4">Desh Ka Vaahan</h2>
           <p className="mb-6 text-lg text-gray-700">
-            At IntuitEV, we are revolutionizing the way you move by reimagining and redesigning
-            Bana eV8 to fit the dynamic needs of the modern world. If you're seeking a versatile,
-            low-maintenance electric ride, Bana is the ideal Vahaan for you.
+            At Ridezzy, we are revolutionizing the way you move by reimagining and redesigning
+            Pulse eV8 to fit the dynamic needs of the modern world. If you're seeking a versatile,
+            low-maintenance electric ride, Pulse is the ideal Vahaan for you.
           </p>
           <p className="text-md font-medium text-gray-600">
-            Join the electric revolution today with Bana—Desh ka Vahaan.
+            Join the electric revolution today with Pulse—Desh ka Vahaan.
           </p>
         </motion.div>
 
         <motion.img
-          src="/bana-bike.png"
-          alt="BANA eV8"
+          src={banaImage} // ✅ Use imported image here
+          alt="Pulse eV8"
           className="rounded-2xl shadow-xl"
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -105,7 +106,6 @@ const BanaProductPage = () => {
           </motion.table>
         </div>
       </section>
-
     </motion.div>
   );
 };
