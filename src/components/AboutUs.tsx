@@ -111,13 +111,13 @@ export default function AboutUs() {
                 name: "Amar Kumar",
                 role: "Founder & CEO",
                 image: amarImage,
-                linkedin: "https://www.linkedin.com/in/amarkumar100/",
+                linkedin: "https://www.linkedin.com/in/amar-kumar23/",
               },
               {
                 name: "Sanidhya Garg",
                 role: "Co-Founder & COO",
                 image: sanidhyaImage,
-                linkedin: "https://www.linkedin.com/in/sanidhyagarg/",
+                linkedin: "https://www.linkedin.com/in/sanidhya-garg-iitd/",
               },
               {
                 name: "Amit",
@@ -129,7 +129,7 @@ export default function AboutUs() {
                 name: "Satya",
                 role: "Growth Advisor",
                 image: satyaImage,
-                linkedin: "#", // Replace with real link
+                linkedin: "https://www.linkedin.com/in/satyavyas/", // Replace with real link
               },
             ].map((member, idx) => (
               <a
