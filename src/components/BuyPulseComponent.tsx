@@ -149,7 +149,7 @@ const RidezzyPremiumScooter = () => {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-yellow-50">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-yellow-50 pt-16 sm:pt-20 px-4">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-white to-gray-50">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-100/30 via-transparent to-blue-100/30 animate-pulse"></div>
@@ -157,7 +157,7 @@ const RidezzyPremiumScooter = () => {
 
         {/* Dynamic light effects */}
         <motion.div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-10 blur-3xl"
+          className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-10 blur-3xl"
           style={{
             x: mousePosition.x * 0.02,
             y: mousePosition.y * 0.02,
@@ -173,7 +173,7 @@ const RidezzyPremiumScooter = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           <motion.div
             ref={heroRef2}
             initial={{ opacity: 0, x: -100 }}
@@ -182,30 +182,30 @@ const RidezzyPremiumScooter = () => {
           >
             {/* Premium badge */}
             <motion.div
-              className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold mb-6"
+              className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 lg:px-4 lg:py-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm lg:text-base"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Zap className="w-4 h-4 mr-2" />
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 lg:w-4 lg:h-4 mr-1.5 sm:mr-2" />
               Premium Electric Series
             </motion.div>
 
             <motion.h1
-              className="text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-yellow-600 bg-clip-text text-transparent"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-yellow-600 bg-clip-text text-transparent leading-tight"
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              RIDEZZY
-              <span className="block text-4xl lg:text-5xl mt-2 bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+              PULSE - ev8
+              <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mt-1 sm:mt-2 bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
                 The Future Rides Here
               </span>
             </motion.h1>
 
             <motion.p
-              className="text-xl text-gray-600 mb-8 leading-relaxed"
+              className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
@@ -217,7 +217,7 @@ const RidezzyPremiumScooter = () => {
 
             {/* Premium stats */}
             <motion.div
-              className="grid grid-cols-3 gap-6 mb-8"
+              className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
@@ -228,24 +228,24 @@ const RidezzyPremiumScooter = () => {
                 { label: "Charge Time", value: "45MIN", icon: Clock },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="flex justify-center mb-2">
-                    <stat.icon className="w-6 h-6 text-yellow-600" />
+                  <div className="flex justify-center mb-1 lg:mb-2">
+                    <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-600" />
                   </div>
-                  <div className="text-2xl font-bold text-yellow-600">{stat.value}</div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-sm sm:text-base lg:text-lg xl:text-2xl font-bold text-yellow-600">{stat.value}</div>
+                  <div className="text-xs sm:text-xs lg:text-sm text-gray-500">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.6 }}
             >
               <motion.button
                 onClick={handleBookNow}
-                className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
+                className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-sm sm:text-base lg:text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -253,11 +253,11 @@ const RidezzyPremiumScooter = () => {
               </motion.button>
               
               <motion.button
-                className="px-8 py-4 border-2 border-yellow-500 text-yellow-600 rounded-full font-semibold hover:bg-yellow-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+                className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 border-2 border-yellow-500 text-yellow-600 rounded-full font-semibold hover:bg-yellow-500 hover:text-white transition-all duration-300 flex items-center justify-center text-sm sm:text-base lg:text-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Play className="w-5 h-5 mr-2" />
+                <Play className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2" />
                 Watch Demo
               </motion.button>
             </motion.div>
@@ -265,7 +265,7 @@ const RidezzyPremiumScooter = () => {
 
           {/* 3D Scooter Display */}
           <motion.div
-            className="relative"
+            className="relative mt-6 sm:mt-8 lg:mt-0"
             style={{ y: parallaxY, scale: scaleTransform }}
           >
             <div className="relative">
@@ -281,7 +281,7 @@ const RidezzyPremiumScooter = () => {
               
               {/* Main scooter image */}
               <motion.div
-                className="relative z-10 p-8"
+                className="relative z-10 p-2 sm:p-4 lg:p-8"
                 animate={{
                   y: [0, -20, 0],
                   rotateY: [0, 5, 0, -5, 0],
@@ -292,12 +292,12 @@ const RidezzyPremiumScooter = () => {
                   ease: "easeInOut",
                 }}
               >
-                <div className="w-96 h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/30 to-orange-100/30"></div>
                   <div className="flex justify-center">
-                    <Car className="w-32 h-32 text-yellow-600" />
+                    <Car className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 xl:w-32 xl:h-32 text-yellow-600" />
                   </div>
-                  <div className="absolute bottom-4 left-4 text-sm text-yellow-600 font-medium">
+                  <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-xs sm:text-sm lg:text-sm text-yellow-600 font-medium">
                     Premium Model 2025
                   </div>
                 </div>
@@ -317,9 +317,9 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Quick Features Overview */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
               { icon: Battery, title: "Smart Battery", subtitle: "Swappable Technology" },
               { icon: Leaf, title: "Eco-Friendly", subtitle: "Zero Emissions" },
@@ -334,11 +334,11 @@ const RidezzyPremiumScooter = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
-                  <feature.icon className="w-12 h-12 text-yellow-600" />
+                <div className="mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                  <feature.icon className="w-8 h-8 lg:w-12 lg:h-12 text-yellow-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{feature.title}</h3>
-                <p className="text-gray-600">{feature.subtitle}</p>
+                <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-1">{feature.title}</h3>
+                <p className="text-sm lg:text-base text-gray-600">{feature.subtitle}</p>
               </motion.div>
             ))}
           </div>
@@ -346,23 +346,23 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 relative bg-white" ref={featuresRef}>
+      <section className="py-16 lg:py-20 relative bg-white" ref={featuresRef}>
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={featuresInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Professional Grade Features
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               Engineered for excellence with cutting-edge technology and premium materials
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 icon: Battery,
@@ -403,7 +403,7 @@ const RidezzyPremiumScooter = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="group relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200"
+                className="group relative p-6 lg:p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200"
                 initial={{ opacity: 0, y: 50 }}
                 animate={featuresInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -411,11 +411,11 @@ const RidezzyPremiumScooter = () => {
               >
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
                 <div className="relative z-10">
-                  <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${feature.color} mb-6`}>
-                    <feature.icon className="w-8 h-8 text-white" />
+                  <div className={`inline-flex p-3 lg:p-4 rounded-full bg-gradient-to-r ${feature.color} mb-4 lg:mb-6`}>
+                    <feature.icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">{feature.title}</h3>
+                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -424,27 +424,27 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Vehicle Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={featuresInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Advanced Vehicle Features
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               Discover the innovative features that make Ridezzy the perfect choice for commercial delivery
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {vehicleFeatures.map((feature, index) => (
               <motion.div
                 key={index}
-                className="group relative p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200"
+                className="group relative p-6 lg:p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200"
                 initial={{ opacity: 0, y: 50 }}
                 animate={featuresInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -452,11 +452,11 @@ const RidezzyPremiumScooter = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300"></div>
                 <div className="relative z-10">
-                  <div className="mb-6 flex justify-center">
-                    <feature.icon className="w-12 h-12 text-yellow-600" />
+                  <div className="mb-4 lg:mb-6 flex justify-center">
+                    <feature.icon className="w-10 h-10 lg:w-12 lg:h-12 text-yellow-600" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">{feature.title}</h3>
+                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -465,39 +465,39 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Technical Specifications Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={featuresInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Technical Specifications
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               Detailed technical information about your commercial delivery vehicle
             </p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-              <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6">
-                <h3 className="text-2xl font-bold text-white text-center">Vehicle Specifications</h3>
+              <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-4 lg:p-6">
+                <h3 className="text-xl lg:text-2xl font-bold text-white text-center">Vehicle Specifications</h3>
               </div>
-              <div className="grid md:grid-cols-2 gap-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                 {technicalSpecs.map((spec, index) => (
                   <motion.div
                     key={index}
-                    className={`p-6 border-b border-gray-200 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-yellow-50 transition-colors duration-300`}
+                    className={`p-4 lg:p-6 border-b border-gray-200 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-yellow-50 transition-colors duration-300`}
                     initial={{ opacity: 0, x: -50 }}
                     animate={featuresInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-gray-900">{spec.label}</span>
-                      <span className="text-yellow-600 font-bold">{spec.value}</span>
+                      <span className="font-semibold text-gray-900 text-sm lg:text-base">{spec.label}</span>
+                      <span className="text-yellow-600 font-bold text-sm lg:text-base">{spec.value}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -508,13 +508,13 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Trusted by Professionals
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
               See why leading businesses choose Ridezzy
             </p>
           </div>
@@ -529,24 +529,24 @@ const RidezzyPremiumScooter = () => {
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center border border-gray-200 shadow-xl">
-                  <div className="flex justify-center mb-6">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 sm:p-6 lg:p-8 text-center border border-gray-200 shadow-xl">
+                  <div className="flex justify-center mb-3 sm:mb-4 lg:mb-6">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-6 h-6 text-yellow-500 fill-current" />
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <blockquote className="text-2xl text-gray-800 mb-8 italic">
+                  <blockquote className="text-lg sm:text-xl lg:text-2xl text-gray-800 mb-4 sm:mb-6 lg:mb-8 italic">
                     "{testimonials[currentTestimonial].quote}"
                   </blockquote>
                   <div className="flex items-center justify-center">
                     <img
                       src={testimonials[currentTestimonial].image}
                       alt={testimonials[currentTestimonial].name}
-                      className="w-16 h-16 rounded-full mr-4"
+                      className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full mr-3 sm:mr-4"
                     />
                     <div>
-                      <div className="font-semibold text-gray-900">{testimonials[currentTestimonial].name}</div>
-                      <div className="text-gray-600">{testimonials[currentTestimonial].company}</div>
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base">{testimonials[currentTestimonial].name}</div>
+                      <div className="text-gray-600 text-xs sm:text-sm">{testimonials[currentTestimonial].company}</div>
                     </div>
                   </div>
                 </div>
@@ -557,30 +557,30 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Customization Section */}
-      <section className="py-20 bg-gray-50" ref={customizeRef}>
+      <section className="py-16 lg:py-20 bg-gray-50" ref={customizeRef}>
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
             initial={{ opacity: 0 }}
             animate={customizeInView ? { opacity: 1 } : {}}
             transition={{ duration: 1 }}
           >
             <div>
-              <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
                 Customize Your Ride
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8">
                 Choose from premium color options and configure your perfect scooter
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">Color Options</h3>
-                  <div className="flex flex-wrap gap-4">
+                  <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gray-900">Color Options</h3>
+                  <div className="flex flex-wrap gap-3 lg:gap-4">
                     {scooterColors.map((color, index) => (
                       <motion.button
                         key={index}
-                        className={`w-16 h-16 rounded-full border-4 ${
+                        className={`w-12 h-12 lg:w-16 lg:h-16 rounded-full border-4 ${
                           selectedColor === index ? 'border-yellow-500 shadow-lg shadow-yellow-400/50' : 'border-gray-300'
                         } transition-all duration-300`}
                         style={{ backgroundColor: color.color }}
@@ -596,46 +596,46 @@ const RidezzyPremiumScooter = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">Quantity</h3>
+                  <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gray-900">Quantity</h3>
                   <div className="flex items-center space-x-4">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
+                      className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
                     >
                       -
                     </button>
-                    <span className="text-2xl font-bold text-gray-900 min-w-[3rem] text-center">
+                    <span className="text-xl lg:text-2xl font-bold text-gray-900 min-w-[3rem] text-center">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
+                      className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
                     >
                       +
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-lg">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-lg text-gray-600">Scooter Price</span>
-                    <span className="text-xl font-bold text-gray-900">₹{scooterPrice.toLocaleString()}</span>
+                <div className="bg-white rounded-2xl p-4 lg:p-6 border border-gray-200 shadow-lg">
+                  <div className="flex justify-between items-center mb-3 lg:mb-4">
+                    <span className="text-base lg:text-lg text-gray-600">Scooter Price</span>
+                    <span className="text-lg lg:text-xl font-bold text-gray-900">₹{scooterPrice.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-lg text-gray-600">Quantity</span>
-                    <span className="text-xl font-bold text-gray-900">{quantity}</span>
+                  <div className="flex justify-between items-center mb-3 lg:mb-4">
+                    <span className="text-base lg:text-lg text-gray-600">Quantity</span>
+                    <span className="text-lg lg:text-xl font-bold text-gray-900">{quantity}</span>
                   </div>
-                  <div className="border-t border-gray-200 pt-4">
+                  <div className="border-t border-gray-200 pt-3 lg:pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xl font-semibold text-gray-900">Total</span>
-                      <span className="text-2xl font-bold text-yellow-600">₹{totalPrice.toLocaleString()}</span>
+                      <span className="text-lg lg:text-xl font-semibold text-gray-900">Total</span>
+                      <span className="text-xl lg:text-2xl font-bold text-yellow-600">₹{totalPrice.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
 
                 <motion.button
                   onClick={handleBookNow}
-                  className="w-full py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-xl hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
+                  className="w-full py-3 lg:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg lg:text-xl hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -644,9 +644,9 @@ const RidezzyPremiumScooter = () => {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative mt-8 lg:mt-0">
               <motion.div
-                className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl border border-gray-200"
+                className="w-full h-80 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl border border-gray-200"
                 animate={{
                   background: `linear-gradient(135deg, ${scooterColors[selectedColor].color}20, ${scooterColors[selectedColor].color}10)`,
                 }}
@@ -654,9 +654,9 @@ const RidezzyPremiumScooter = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/20 to-orange-100/20"></div>
                 <div className="flex justify-center">
-                  <Car className="w-32 h-32 text-yellow-600" />
+                  <Car className="w-24 h-24 lg:w-32 lg:h-32 text-yellow-600" />
                 </div>
-                <div className="absolute bottom-4 left-4 text-sm text-yellow-600 font-medium">
+                <div className="absolute bottom-4 left-4 text-xs lg:text-sm text-yellow-600 font-medium">
                   {scooterColors[selectedColor].name}
                 </div>
               </motion.div>
@@ -666,120 +666,120 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Why Choose Ridezzy Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Why Choose Ridezzy?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               Compare Ridezzy with traditional delivery vehicles and see the difference
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Traditional Vehicles */}
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Traditional Vehicles</h3>
-              <div className="space-y-4">
+            <div className="bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-200">
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 lg:mb-6 text-center">Traditional Vehicles</h3>
+              <div className="space-y-3 lg:space-y-4">
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">High fuel costs</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">High fuel costs</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Frequent maintenance</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Frequent maintenance</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Environmental impact</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Environmental impact</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Complex registration</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Complex registration</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Limited payload</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Limited payload</span>
                 </div>
               </div>
             </div>
 
             {/* Ridezzy */}
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border-2 border-yellow-300 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-center py-2 text-sm font-bold">
+            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 lg:p-8 border-2 border-yellow-300 relative overflow-hidden md:col-span-2 lg:col-span-1">
+              <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-center py-2 text-xs lg:text-sm font-bold">
                 RECOMMENDED
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center mt-4">Ridezzy Premium</h3>
-              <div className="space-y-4">
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 lg:mb-6 text-center mt-4">Ridezzy Premium</h3>
+              <div className="space-y-3 lg:space-y-4">
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">Zero fuel costs</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">Zero fuel costs</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">Minimal maintenance</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">Minimal maintenance</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">100% eco-friendly</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">100% eco-friendly</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">No registration needed</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">No registration needed</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">150 kg payload capacity</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">150 kg payload capacity</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-700 font-medium">Smart battery swapping</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-700 font-medium">Smart battery swapping</span>
                 </div>
               </div>
             </div>
 
             {/* Other Electric */}
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Other Electric</h3>
-              <div className="space-y-4">
+            <div className="bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-200 md:col-span-2 lg:col-span-1">
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 lg:mb-6 text-center">Other Electric</h3>
+              <div className="space-y-3 lg:space-y-4">
                 <div className="flex items-center">
-                  <span className="text-green-500 mr-3">✓</span>
-                  <span className="text-gray-600">No fuel costs</span>
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="text-sm lg:text-base text-gray-600">No fuel costs</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Long charging times</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Long charging times</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-yellow-500 mr-3">~</span>
-                  <span className="text-gray-600">Limited range</span>
+                  <span className="text-yellow-500 mr-3 text-lg">~</span>
+                  <span className="text-sm lg:text-base text-gray-600">Limited range</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-red-500 mr-3">✗</span>
-                  <span className="text-gray-600">Expensive maintenance</span>
+                  <span className="text-red-500 mr-3 text-lg">✗</span>
+                  <span className="text-sm lg:text-base text-gray-600">Expensive maintenance</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-yellow-500 mr-3">~</span>
-                  <span className="text-gray-600">Average payload</span>
+                  <span className="text-yellow-500 mr-3 text-lg">~</span>
+                  <span className="text-sm lg:text-base text-gray-600">Average payload</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-8 lg:mt-12 text-center">
             <motion.button
               onClick={handleBookNow}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
+              className="inline-flex items-center px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-base lg:text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Rocket className="w-5 h-5 mr-2" />
+              <Rocket className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
               Book Your Ridezzy Today
             </motion.button>
           </div>
@@ -787,15 +787,15 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               {
                 question: "How does the Battery Smart integration work?",
@@ -820,18 +820,18 @@ const RidezzyPremiumScooter = () => {
             ].map((faq, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-50 rounded-2xl overflow-hidden border border-gray-200"
+                className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <button
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-100 transition-colors"
+                  className="w-full p-4 sm:p-5 lg:p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
                   onClick={() => setActiveFaq(activeFaq === index ? null : index)}
                 >
-                  <span className="text-xl font-semibold text-gray-900">{faq.question}</span>
+                  <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-semibold text-gray-900 pr-4">{faq.question}</span>
                   <ChevronDown
-                    className={`w-6 h-6 text-yellow-600 transition-transform ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 text-yellow-600 transition-transform flex-shrink-0 ${
                       activeFaq === index ? 'rotate-180' : ''
                     }`}
                   />
@@ -845,7 +845,7 @@ const RidezzyPremiumScooter = () => {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 text-gray-600 text-lg leading-relaxed border-t border-gray-200">
+                      <div className="p-4 sm:p-5 lg:p-6 pt-0 text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed border-t border-gray-200">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -869,91 +869,91 @@ const RidezzyPremiumScooter = () => {
               onClick={() => setShowBookingPanel(false)}
             />
             <motion.div
-              className="fixed right-0 top-0 h-full w-full max-w-md bg-white border-l border-gray-200 z-50 p-6 overflow-y-auto shadow-2xl"
+              className="fixed right-0 top-0 h-full w-full sm:max-w-md bg-white border-l border-gray-200 z-50 p-4 sm:p-5 lg:p-6 overflow-y-auto shadow-2xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
             >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Book Your Ridezzy</h2>
+              <div className="flex items-center justify-between mb-4 sm:mb-5 lg:mb-6">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">Book Your Ridezzy</h2>
                 <button
                   onClick={() => setShowBookingPanel(false)}
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <X className="w-6 h-6 text-gray-600" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-5 lg:space-y-6">
                 {/* Order Summary */}
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Order Summary</h3>
-                  <div className="space-y-3">
+                <div className="bg-gray-50 rounded-2xl p-4 sm:p-5 lg:p-6 border border-gray-200">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Order Summary</h3>
+                  <div className="space-y-2 sm:space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Ridezzy Premium</span>
-                      <span className="text-gray-900 font-semibold">₹{scooterPrice.toLocaleString()}</span>
+                      <span className="text-sm sm:text-base text-gray-600">Ridezzy Premium</span>
+                      <span className="text-sm sm:text-base text-gray-900 font-semibold">₹{scooterPrice.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Quantity</span>
-                      <span className="text-gray-900 font-semibold">{quantity}</span>
+                      <span className="text-sm sm:text-base text-gray-600">Quantity</span>
+                      <span className="text-sm sm:text-base text-gray-900 font-semibold">{quantity}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Color</span>
-                      <span className="text-gray-900 font-semibold">{scooterColors[selectedColor].name}</span>
+                      <span className="text-sm sm:text-base text-gray-600">Color</span>
+                      <span className="text-sm sm:text-base text-gray-900 font-semibold">{scooterColors[selectedColor].name}</span>
                     </div>
-                    <div className="border-t border-gray-300 pt-3">
+                    <div className="border-t border-gray-300 pt-2 sm:pt-3">
                       <div className="flex justify-between">
-                        <span className="text-lg font-semibold text-gray-900">Total</span>
-                        <span className="text-lg font-bold text-yellow-600">₹{totalPrice.toLocaleString()}</span>
+                        <span className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900">Total</span>
+                        <span className="text-sm sm:text-base lg:text-lg font-bold text-yellow-600">₹{totalPrice.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Booking Form */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Full Name</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Email</label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your email"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Phone Number</label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your phone number"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">City</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your city"
                     />
                   </div>
                 </div>
 
                 {/* Payment Info */}
-                <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4">
-                  <div className="flex items-center mb-2">
-                    <Check className="w-5 h-5 text-yellow-600 mr-2" />
-                    <span className="text-yellow-700 font-semibold">Secure Booking</span>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-3 sm:p-4">
+                  <div className="flex items-center mb-1 sm:mb-2">
+                    <Check className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600 mr-2" />
+                    <span className="text-sm sm:text-base text-yellow-700 font-semibold">Secure Booking</span>
                   </div>
-                  <p className="text-sm text-gray-700">
+                  <p className="text-xs sm:text-sm text-gray-700">
                     Pay only ₹{bookingAmount.toLocaleString()} to secure your booking. 
                     Rest amount due on delivery.
                   </p>
@@ -961,7 +961,7 @@ const RidezzyPremiumScooter = () => {
 
                 {/* Book Now Button */}
                 <motion.button
-                  className="w-full py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
+                  className="w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-sm sm:text-base lg:text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowBookingPanel(false)}
