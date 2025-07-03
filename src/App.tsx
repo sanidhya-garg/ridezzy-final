@@ -8,6 +8,7 @@ import TOS from "./policies/Termsofservice";
 import AdvertisementPage from "./advertisingpage";
 import PrivacyPolicy from "./policies/Privacypolicy";
 import RefundPolicy from "./policies/Refundpolicy";
+import CheckoutPage from "./components/BuyPulse";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} /> {/* Placeholder for Bana page */}
         <Route path="/pulse" element={<BanaPage />} /> {/* Placeholder for Bana page */}
         <Route path="/advertising" element={<AdvertisementPage />} />
+        <Route path="/buy-pulse" element={<CheckoutPage />} /> {/* Placeholder for Advertisement page */}
         <Route path="/terms-of-service" element={<TOS />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Placeholder for Privacy Policy */}
         <Route path="/refund-policy" element={<RefundPolicy />} /> {/* Placeholder for Advertisement page */}
