@@ -1,35 +1,122 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Battery, Zap, Shield, Truck, CreditCard, MapPin, Clock, Star, Play, ChevronDown, X, Check, Leaf, Wrench, Package, Clipboard, Smartphone, Rocket, Car } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Battery, Zap, Shield, Truck, CreditCard, MapPin, Clock, Star, Play, ChevronDown, X, Check, Leaf, Wrench, Package, Clipboard, Smartphone, Rocket, Car, Palette, Sparkles } from "lucide-react";
 
 const RidezzyPremiumScooter = () => {
+  const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [showBookingPanel, setShowBookingPanel] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [selectedHeroImage, setSelectedHeroImage] = useState(0);
+  const [isColorTransitioning, setIsColorTransitioning] = useState(false);
+  const [colorHoverIndex, setColorHoverIndex] = useState<number | null>(null);
   
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
+  // Form state
+  const [formData, setFormData] = useState({
+    customerName: '',
+    customerEmail: '',
+    customerPhone: '',
+    city: ''
   });
   
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const scaleTransform = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const vehicleRef = useRef<HTMLDivElement>(null);
+  const colorSelectorRef = useRef<HTMLDivElement>(null);
+  
+  // Enhanced scroll animations
+  const { scrollYProgress } = useScroll();
+  const { scrollYProgress: vehicleScrollProgress } = useScroll({
+    target: vehicleRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const vehicleScale = useTransform(vehicleScrollProgress, [0, 0.5, 1], [0.8, 1, 0.9]);
+  const vehicleRotation = useTransform(vehicleScrollProgress, [0, 1], [0, 360]);
   
   const [heroRef2, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [featuresRef, featuresInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [customizeRef, customizeInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  
+  // Enhanced color change animation
+  const handleColorChange = (index: number) => {
+    if (index === selectedColor) return;
+    
+    setIsColorTransitioning(true);
+    setTimeout(() => {
+      setSelectedColor(index);
+      setIsColorTransitioning(false);
+    }, 300);
+  };
+  
+  // Mouse tracking for interactive effects
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = vehicleRef.current?.getBoundingClientRect();
+      if (rect) {
+        setMousePosition({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100
+        });
+      }
+    };
+    
+    const vehicleElement = vehicleRef.current;
+    if (vehicleElement) {
+      vehicleElement.addEventListener('mousemove', handleMouseMove);
+      return () => vehicleElement.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
 
   const scooterColors = [
-    { name: "Lightning Yellow", color: "#FFD700", gradient: "from-yellow-400 to-yellow-600" },
-    { name: "Electric Blue", color: "#0EA5E9", gradient: "from-blue-400 to-blue-600" },
-    { name: "Neon Green", color: "#10B981", gradient: "from-green-400 to-green-600" },
-    { name: "Crimson Red", color: "#EF4444", gradient: "from-red-400 to-red-600" },
-    { name: "Stealth Black", color: "#1F2937", gradient: "from-gray-700 to-gray-900" }
+    { 
+      name: "Lightning Yellow", 
+      color: "#FFD700", 
+      gradient: "from-yellow-400 to-yellow-600",
+      shadowColor: "rgba(255, 215, 0, 0.5)",
+      glowColor: "rgba(255, 215, 0, 0.3)"
+    },
+    { 
+      name: "Electric Blue", 
+      color: "#0EA5E9", 
+      gradient: "from-blue-400 to-blue-600",
+      shadowColor: "rgba(14, 165, 233, 0.5)",
+      glowColor: "rgba(14, 165, 233, 0.3)"
+    },
+    { 
+      name: "Neon Green", 
+      color: "#10B981", 
+      gradient: "from-green-400 to-green-600",
+      shadowColor: "rgba(16, 185, 129, 0.5)",
+      glowColor: "rgba(16, 185, 129, 0.3)"
+    },
+    { 
+      name: "Crimson Red", 
+      color: "#EF4444", 
+      gradient: "from-red-400 to-red-600",
+      shadowColor: "rgba(239, 68, 68, 0.5)",
+      glowColor: "rgba(239, 68, 68, 0.3)"
+    },
+    { 
+      name: "Stealth Black", 
+      color: "#1F2937", 
+      gradient: "from-gray-700 to-gray-900",
+      shadowColor: "rgba(31, 41, 55, 0.5)",
+      glowColor: "rgba(31, 41, 55, 0.3)"
+    }
+  ];
+
+  const heroImages = [
+    { src: "/src/assets/RidezzyScooter.png", alt: "Front View", label: "Front View" },
+    { src: "/src/assets/hero image.jpg", alt: "Side View", label: "Side View" },
+    { src: "/src/assets/buy-pulse-hero.png", alt: "Detail View", label: "Detail View" },
+    { src: "/src/assets/about-scooter.png", alt: "Features", label: "Features" }
   ];
 
   const vehicleFeatures = [
@@ -123,6 +210,27 @@ const RidezzyPremiumScooter = () => {
     setShowBookingPanel(true);
   };
 
+  const handleBookingSubmit = () => {
+    // Validate form
+    if (!formData.customerName || !formData.customerEmail || !formData.customerPhone) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    // Navigate to booking confirmation page with form data
+    navigate('/booking-confirmation', {
+      state: {
+        selectedColor: scooterColors[selectedColor].name,
+        selectedVariant: 'Premium',
+        bookingAmount,
+        customerName: formData.customerName,
+        customerEmail: formData.customerEmail,
+        customerPhone: formData.customerPhone,
+        city: formData.city
+      }
+    });
+  };
+
   return (
     <div className="bg-white text-gray-900 overflow-hidden">
       {/* Floating particles background */}
@@ -149,15 +257,44 @@ const RidezzyPremiumScooter = () => {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-yellow-50 pt-16 sm:pt-20 px-4">
-        {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-white to-gray-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-100/30 via-transparent to-blue-100/30 animate-pulse"></div>
+      <motion.section 
+        ref={heroRef} 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{ y: heroY, opacity: heroOpacity }}
+      >
+        {/* Hero Background Image */}
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <img 
+            src="/src/assets/buy-pulse-hero.png" 
+            alt="Ridezzy Premium Scooter" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              // Fallback to gradient background if image fails to load
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = target.parentElement?.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }}
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/40"></div>
+          {/* Gradient overlay for better text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+        </motion.div>
+
+        {/* Fallback background (hidden by default) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-yellow-900 hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-transparent to-orange-500/20 animate-pulse"></div>
         </div>
 
         {/* Dynamic light effects */}
         <motion.div
-          className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-10 blur-3xl"
+          className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-5 blur-3xl"
           style={{
             x: mousePosition.x * 0.02,
             y: mousePosition.y * 0.02,
@@ -173,79 +310,78 @@ const RidezzyPremiumScooter = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <motion.div
             ref={heroRef2}
-            initial={{ opacity: 0, x: -100 }}
-            animate={heroInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="text-center"
           >
             {/* Premium badge */}
             <motion.div
-              className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 lg:px-4 lg:py-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm lg:text-base"
+              className="inline-flex items-center px-4 py-2 lg:px-6 lg:py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold mb-6 lg:mb-8 text-sm lg:text-base shadow-lg"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
             >
-              <Zap className="w-3 h-3 sm:w-4 sm:h-4 lg:w-4 lg:h-4 mr-1.5 sm:mr-2" />
+              <Zap className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
               Premium Electric Series
             </motion.div>
 
             <motion.h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-yellow-600 bg-clip-text text-transparent leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 lg:mb-8 text-white leading-tight drop-shadow-2xl"
               initial={{ opacity: 0, y: 50 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1, delay: 0.4 }}
             >
               PULSE - ev8
-              <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mt-1 sm:mt-2 bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-2 lg:mt-4 text-yellow-400 drop-shadow-lg">
                 The Future Rides Here
               </span>
             </motion.h1>
 
             <motion.p
-              className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              Experience revolutionary electric mobility with Battery Smart integration,
-              premium build quality, and cutting-edge technology. Built for professionals
-              who demand excellence.
-            </motion.p>
-
-            {/* Premium stats */}
-            <motion.div
-              className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8"
+              className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-8 lg:mb-12 leading-relaxed max-w-3xl mx-auto drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
             >
+              Revolutionary electric mobility with Battery Smart integration
+            </motion.p>
+
+            {/* Minimal stats */}
+            <motion.div
+              className="flex justify-center items-center gap-8 lg:gap-12 mb-8 lg:mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
               {[
                 { label: "Range", value: "120KM", icon: Battery },
-                { label: "Top Speed", value: "65KM/H", icon: Zap },
-                { label: "Charge Time", value: "45MIN", icon: Clock },
+                { label: "Top Speed", value: "45KM/H", icon: Zap },
+                { label: "Charge Time", value: "0 MIN", icon: Clock },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="flex justify-center mb-1 lg:mb-2">
-                    <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-600" />
+                  <div className="flex justify-center mb-2">
+                    <stat.icon className="w-6 h-6 lg:w-8 lg:h-8 text-yellow-400" />
                   </div>
-                  <div className="text-sm sm:text-base lg:text-lg xl:text-2xl font-bold text-yellow-600">{stat.value}</div>
-                  <div className="text-xs sm:text-xs lg:text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-xl lg:text-2xl font-bold text-white drop-shadow-lg">{stat.value}</div>
+                  <div className="text-sm lg:text-base text-gray-300">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4"
+              className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.6 }}
+              transition={{ duration: 1, delay: 0.7 }}
             >
               <motion.button
                 onClick={handleBookNow}
-                className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-sm sm:text-base lg:text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
+                className="px-8 py-4 lg:px-12 lg:py-5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg lg:text-xl hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300 min-w-[200px]"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -253,56 +389,14 @@ const RidezzyPremiumScooter = () => {
               </motion.button>
               
               <motion.button
-                className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 border-2 border-yellow-500 text-yellow-600 rounded-full font-semibold hover:bg-yellow-500 hover:text-white transition-all duration-300 flex items-center justify-center text-sm sm:text-base lg:text-lg"
+                className="px-8 py-4 lg:px-12 lg:py-5 border-2 border-white/50 text-white rounded-full font-semibold hover:bg-white/20 backdrop-blur-sm transition-all duration-300 flex items-center justify-center text-lg lg:text-xl min-w-[200px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Play className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2" />
+                <Play className="w-5 h-5 lg:w-6 lg:h-6 mr-2" />
                 Watch Demo
               </motion.button>
             </motion.div>
-          </motion.div>
-
-          {/* 3D Scooter Display */}
-          <motion.div
-            className="relative mt-6 sm:mt-8 lg:mt-0"
-            style={{ y: parallaxY, scale: scaleTransform }}
-          >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-full opacity-20 blur-3xl scale-150 animate-pulse"></div>
-              
-              {/* Rotating ring */}
-              <motion.div
-                className="absolute inset-0 border-2 border-yellow-400/40 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-              
-              {/* Main scooter image */}
-              <motion.div
-                className="relative z-10 p-2 sm:p-4 lg:p-8"
-                animate={{
-                  y: [0, -20, 0],
-                  rotateY: [0, 5, 0, -5, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/30 to-orange-100/30"></div>
-                  <div className="flex justify-center">
-                    <Car className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 xl:w-32 xl:h-32 text-yellow-600" />
-                  </div>
-                  <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-xs sm:text-sm lg:text-sm text-yellow-600 font-medium">
-                    Premium Model 2025
-                  </div>
-                </div>
-              </motion.div>
-            </div>
           </motion.div>
         </div>
 
@@ -312,8 +406,63 @@ const RidezzyPremiumScooter = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown className="w-8 h-8 text-yellow-600" />
+          <ChevronDown className="w-8 h-8 text-white drop-shadow-lg" />
         </motion.div>
+      </motion.section>
+
+      {/* Hero Image Gallery Section */}
+      <section className="py-8 sm:py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-6 sm:mb-8">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2">
+              Explore Every Angle
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600">
+              Click to view different perspectives of your Ridezzy Premium
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {heroImages.map((image, index) => (
+              <motion.div
+                key={index}
+                className={`group relative bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                  selectedHeroImage === index ? 'ring-4 ring-yellow-400 ring-opacity-75' : ''
+                }`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedHeroImage(index)}
+              >
+                <div className="aspect-square relative">
+                  <img 
+                    src={image.src} 
+                    alt={image.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMDAgNTBMMTUwIDEwMEwxMDAgMTUwTDUwIDEwMEwxMDAgNTBaIiBmaWxsPSIjRURCODQyIi8+CjwvZz48L3N2Zz4=';
+                    }}
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-300 ${
+                    selectedHeroImage === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                  }`}></div>
+                  {selectedHeroImage === index && (
+                    <div className="absolute top-2 right-2 bg-yellow-400 rounded-full p-1">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                  )}
+                </div>
+                <div className={`absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent transition-transform duration-300 ${
+                  selectedHeroImage === index ? 'translate-y-0' : 'translate-y-full group-hover:translate-y-0'
+                }`}>
+                  <p className="text-white text-sm font-medium">{image.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Quick Features Overview */}
@@ -424,7 +573,7 @@ const RidezzyPremiumScooter = () => {
       </section>
 
       {/* Vehicle Features Section */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-16 lg:py-20 bg-white" ref={featuresRef}>
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             className="text-center mb-12 lg:mb-16"
@@ -432,32 +581,137 @@ const RidezzyPremiumScooter = () => {
             animate={featuresInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+            <motion.h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent"
+              animate={{
+                backgroundPosition: featuresInView ? ["0% 50%", "100% 50%", "0% 50%"] : "0% 50%"
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
               Advanced Vehicle Features
-            </h2>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
+            </motion.h2>
+            <motion.p 
+              className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={featuresInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Discover the innovative features that make Ridezzy the perfect choice for commercial delivery
-            </p>
+            </motion.p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {vehicleFeatures.map((feature, index) => (
               <motion.div
                 key={index}
-                className="group relative p-6 lg:p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200"
-                initial={{ opacity: 0, y: 50 }}
-                animate={featuresInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -10 }}
+                className="group relative p-6 lg:p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-200 overflow-hidden"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={featuresInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -10,
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)"
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300"></div>
+                {/* Animated background gradient */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300"
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, #FCD34D, #F59E0B)",
+                      "linear-gradient(135deg, #FCD34D, #F59E0B)",
+                      "linear-gradient(45deg, #FCD34D, #F59E0B)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Floating icon effect */}
                 <div className="relative z-10">
-                  <div className="mb-4 lg:mb-6 flex justify-center">
-                    <feature.icon className="w-10 h-10 lg:w-12 lg:h-12 text-yellow-600" />
-                  </div>
-                  <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">{feature.title}</h3>
-                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{feature.description}</p>
+                  <motion.div 
+                    className="mb-4 lg:mb-6 flex justify-center"
+                    whileHover={{ 
+                      rotate: [0, -10, 10, -10, 0],
+                      scale: 1.2,
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <motion.div
+                      className="relative"
+                      animate={{
+                        y: [0, -5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.2,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <feature.icon className="w-10 h-10 lg:w-12 lg:h-12 text-yellow-600" />
+                      
+                      {/* Glow effect */}
+                      <motion.div
+                        className="absolute inset-0 w-10 h-10 lg:w-12 lg:h-12 bg-yellow-400 rounded-full blur-xl opacity-0 group-hover:opacity-30"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900"
+                    initial={{ opacity: 0 }}
+                    animate={featuresInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                  >
+                    {feature.title}
+                  </motion.h3>
+                  <motion.p 
+                    className="text-sm lg:text-base text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    animate={featuresInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                  >
+                    {feature.description}
+                  </motion.p>
                 </div>
+
+                {/* Animated border effect */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-yellow-400 rounded-2xl opacity-0 group-hover:opacity-100"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ 
+                    duration: 1.5,
+                    ease: "easeInOut",
+                    delay: index * 0.1
+                  }}
+                />
               </motion.div>
             ))}
           </div>
@@ -566,57 +820,137 @@ const RidezzyPremiumScooter = () => {
             transition={{ duration: 1 }}
           >
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent">
+              <motion.h2 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-gray-900 to-yellow-600 bg-clip-text text-transparent"
+                initial={{ x: -50, opacity: 0 }}
+                animate={customizeInView ? { x: 0, opacity: 1 } : {}}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
                 Customize Your Ride
-              </h2>
-              <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8">
+              </motion.h2>
+              <motion.p 
+                className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8"
+                initial={{ x: -50, opacity: 0 }}
+                animate={customizeInView ? { x: 0, opacity: 1 } : {}}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
                 Choose from premium color options and configure your perfect scooter
-              </p>
+              </motion.p>
 
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gray-900">Color Options</h3>
-                  <div className="flex flex-wrap gap-3 lg:gap-4">
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={customizeInView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                >
+                  <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gray-900 flex items-center">
+                    <Palette className="w-5 h-5 mr-2 text-yellow-600" />
+                    Color Options
+                  </h3>
+                  <div className="flex flex-wrap gap-3 lg:gap-4" ref={colorSelectorRef}>
                     {scooterColors.map((color, index) => (
                       <motion.button
                         key={index}
-                        className={`w-12 h-12 lg:w-16 lg:h-16 rounded-full border-4 ${
-                          selectedColor === index ? 'border-yellow-500 shadow-lg shadow-yellow-400/50' : 'border-gray-300'
-                        } transition-all duration-300`}
-                        style={{ backgroundColor: color.color }}
-                        onClick={() => setSelectedColor(index)}
-                        whileHover={{ scale: 1.1 }}
+                        className={`relative w-12 h-12 lg:w-16 lg:h-16 rounded-full border-4 ${
+                          selectedColor === index ? 'border-yellow-500 shadow-lg' : 'border-gray-300'
+                        } transition-all duration-300 overflow-hidden group`}
+                        style={{ 
+                          backgroundColor: color.color,
+                          boxShadow: selectedColor === index ? `0 0 30px ${color.glowColor}` : 'none'
+                        }}
+                        onClick={() => handleColorChange(index)}
+                        onMouseEnter={() => setColorHoverIndex(index)}
+                        onMouseLeave={() => setColorHoverIndex(null)}
+                        whileHover={{ 
+                          scale: 1.1,
+                          boxShadow: `0 0 25px ${color.glowColor}`,
+                          transition: { duration: 0.2 }
+                        }}
                         whileTap={{ scale: 0.9 }}
-                      />
+                        initial={{ rotate: 0 }}
+                        animate={{ 
+                          rotate: selectedColor === index ? 360 : 0,
+                          scale: selectedColor === index ? 1.1 : 1
+                        }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                      >
+                        {/* Animated ring effect */}
+                        {selectedColor === index && (
+                          <motion.div
+                            className="absolute inset-0 rounded-full border-2 border-yellow-400"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1.5, opacity: 0 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "easeOut" }}
+                          />
+                        )}
+                        
+                        {/* Sparkle effect on hover */}
+                        {(colorHoverIndex === index || selectedColor === index) && (
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: `conic-gradient(from 0deg, transparent, ${color.glowColor}, transparent)`
+                            }}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          />
+                        )}
+                      </motion.button>
                     ))}
                   </div>
-                  <p className="text-yellow-600 font-semibold mt-2">
+                  <motion.p 
+                    className="text-yellow-600 font-semibold mt-2 flex items-center"
+                    key={selectedColor}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Sparkles className="w-4 h-4 mr-1" />
                     {scooterColors[selectedColor].name}
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={customizeInView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
                   <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gray-900">Quantity</h3>
                   <div className="flex items-center space-x-4">
-                    <button
+                    <motion.button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       -
-                    </button>
-                    <span className="text-xl lg:text-2xl font-bold text-gray-900 min-w-[3rem] text-center">
+                    </motion.button>
+                    <motion.span 
+                      className="text-xl lg:text-2xl font-bold text-gray-900 min-w-[3rem] text-center"
+                      key={quantity}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {quantity}
-                    </span>
-                    <button
+                    </motion.span>
+                    <motion.button
                       onClick={() => setQuantity(quantity + 1)}
                       className="w-10 h-10 lg:w-12 lg:h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-gray-700"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       +
-                    </button>
+                    </motion.button>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="bg-white rounded-2xl p-4 lg:p-6 border border-gray-200 shadow-lg">
+                <motion.div 
+                  className="bg-white rounded-2xl p-4 lg:p-6 border border-gray-200 shadow-lg"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={customizeInView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
                   <div className="flex justify-between items-center mb-3 lg:mb-4">
                     <span className="text-base lg:text-lg text-gray-600">Scooter Price</span>
                     <span className="text-lg lg:text-xl font-bold text-gray-900">₹{scooterPrice.toLocaleString()}</span>
@@ -628,37 +962,176 @@ const RidezzyPremiumScooter = () => {
                   <div className="border-t border-gray-200 pt-3 lg:pt-4">
                     <div className="flex justify-between items-center">
                       <span className="text-lg lg:text-xl font-semibold text-gray-900">Total</span>
-                      <span className="text-xl lg:text-2xl font-bold text-yellow-600">₹{totalPrice.toLocaleString()}</span>
+                      <motion.span 
+                        className="text-xl lg:text-2xl font-bold text-yellow-600"
+                        key={totalPrice}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        ₹{totalPrice.toLocaleString()}
+                      </motion.span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 <motion.button
                   onClick={handleBookNow}
                   className="w-full py-3 lg:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-lg lg:text-xl hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={customizeInView ? { y: 0, opacity: 1 } : {}}
+                  transition={{ delay: 0.7, duration: 0.8 }}
                 >
                   Book Now - Pay ₹{bookingAmount.toLocaleString()}
                 </motion.button>
               </div>
             </div>
 
-            <div className="relative mt-8 lg:mt-0">
+            {/* Enhanced 3D Vehicle Showcase */}
+            <div className="relative mt-8 lg:mt-0" ref={vehicleRef}>
               <motion.div
                 className="w-full h-80 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-2xl border border-gray-200"
+                style={{
+                  scale: vehicleScale,
+                  rotateY: vehicleRotation,
+                }}
                 animate={{
                   background: `linear-gradient(135deg, ${scooterColors[selectedColor].color}20, ${scooterColors[selectedColor].color}10)`,
                 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/20 to-orange-100/20"></div>
-                <div className="flex justify-center">
-                  <Car className="w-24 h-24 lg:w-32 lg:h-32 text-yellow-600" />
-                </div>
-                <div className="absolute bottom-4 left-4 text-xs lg:text-sm text-yellow-600 font-medium">
-                  {scooterColors[selectedColor].name}
-                </div>
+                {/* Animated background gradient */}
+                <motion.div
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    background: `linear-gradient(45deg, ${scooterColors[selectedColor].color}40, transparent, ${scooterColors[selectedColor].color}20)`
+                  }}
+                  animate={{
+                    background: [
+                      `linear-gradient(45deg, ${scooterColors[selectedColor].color}40, transparent, ${scooterColors[selectedColor].color}20)`,
+                      `linear-gradient(225deg, ${scooterColors[selectedColor].color}40, transparent, ${scooterColors[selectedColor].color}20)`,
+                      `linear-gradient(45deg, ${scooterColors[selectedColor].color}40, transparent, ${scooterColors[selectedColor].color}20)`
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Floating particles */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 rounded-full opacity-60"
+                    style={{
+                      backgroundColor: scooterColors[selectedColor].color,
+                      left: `${20 + i * 15}%`,
+                      top: `${30 + (i % 2) * 40}%`,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 2 + i * 0.3,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+
+                {/* Enhanced 3D Vehicle */}
+                <motion.div
+                  className="flex justify-center items-center relative"
+                  style={{
+                    rotateY: useTransform(scrollYProgress, [0, 1], [0, 360]),
+                  }}
+                  animate={{
+                    rotateY: isColorTransitioning ? 360 : 0,
+                  }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                >
+                  {/* Glow effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full blur-xl opacity-50"
+                    style={{
+                      background: `radial-gradient(circle, ${scooterColors[selectedColor].glowColor}, transparent)`,
+                      width: '200%',
+                      height: '200%',
+                      left: '-50%',
+                      top: '-50%',
+                    }}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+
+                  <motion.div
+                    className="relative z-10"
+                    style={{
+                      filter: `drop-shadow(0 0 20px ${scooterColors[selectedColor].glowColor})`,
+                    }}
+                  >
+                    <Car 
+                      className="w-24 h-24 lg:w-32 lg:h-32 transition-colors duration-500"
+                      style={{ color: scooterColors[selectedColor].color }}
+                    />
+                  </motion.div>
+
+                  {/* Interactive spotlight effect */}
+                  <motion.div
+                    className="absolute pointer-events-none"
+                    style={{
+                      left: `${mousePosition.x}%`,
+                      top: `${mousePosition.y}%`,
+                      width: '100px',
+                      height: '100px',
+                      background: `radial-gradient(circle, ${scooterColors[selectedColor].glowColor}, transparent)`,
+                      transform: 'translate(-50%, -50%)',
+                      opacity: 0.3,
+                      filter: 'blur(20px)',
+                    }}
+                  />
+                </motion.div>
+
+                {/* Color info badge */}
+                <motion.div 
+                  className="absolute bottom-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs lg:text-sm font-medium border border-gray-200"
+                  key={selectedColor}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ color: scooterColors[selectedColor].color }}
+                >
+                  <div className="flex items-center">
+                    <motion.div
+                      className="w-2 h-2 rounded-full mr-2"
+                      style={{ backgroundColor: scooterColors[selectedColor].color }}
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    />
+                    {scooterColors[selectedColor].name}
+                  </div>
+                </motion.div>
+
+                {/* Performance indicator */}
+                <motion.div
+                  className="absolute top-4 right-4 flex items-center space-x-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs lg:text-sm font-medium border border-gray-200"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                >
+                  <Zap className="w-3 h-3 text-yellow-500" />
+                  <span className="text-gray-700">45 km/h</span>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>
@@ -917,6 +1390,8 @@ const RidezzyPremiumScooter = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Full Name</label>
                     <input
                       type="text"
+                      value={formData.customerName}
+                      onChange={(e) => setFormData({...formData, customerName: e.target.value})}
                       className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your full name"
                     />
@@ -925,6 +1400,8 @@ const RidezzyPremiumScooter = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Email</label>
                     <input
                       type="email"
+                      value={formData.customerEmail}
+                      onChange={(e) => setFormData({...formData, customerEmail: e.target.value})}
                       className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your email"
                     />
@@ -933,6 +1410,8 @@ const RidezzyPremiumScooter = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">Phone Number</label>
                     <input
                       type="tel"
+                      value={formData.customerPhone}
+                      onChange={(e) => setFormData({...formData, customerPhone: e.target.value})}
                       className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your phone number"
                     />
@@ -941,6 +1420,8 @@ const RidezzyPremiumScooter = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">City</label>
                     <input
                       type="text"
+                      value={formData.city}
+                      onChange={(e) => setFormData({...formData, city: e.target.value})}
                       className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Enter your city"
                     />
@@ -964,7 +1445,7 @@ const RidezzyPremiumScooter = () => {
                   className="w-full py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-full text-sm sm:text-base lg:text-lg hover:shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => setShowBookingPanel(false)}
+                  onClick={handleBookingSubmit}
                 >
                   Confirm Booking - ₹{bookingAmount.toLocaleString()}
                 </motion.button>
