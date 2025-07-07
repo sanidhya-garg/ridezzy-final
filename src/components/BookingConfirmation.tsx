@@ -168,7 +168,7 @@ const BookingConfirmation: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+911234567890"
+                href="tel:+91 9289597226"
                 className="px-6 py-3 bg-yellow-500 text-white rounded-xl hover:bg-yellow-600 transition-colors font-medium"
               >
                 Call Support
