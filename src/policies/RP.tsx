@@ -93,7 +93,7 @@ const RefundPolicy = () => {
           <ul className="list-disc ml-6 space-y-2">
             <li>Contact our support team via email or the app at least 12 hours before the rental begins.</li>
             <li>Provide your booking ID and registered contact details for verification.</li>
-            <li>Refunds (after deduction) will be processed to the original payment method within 5–7 business days.</li>
+            <li>Refunds (after deduction) will be processed and credited to the original payment method within 5–7 business days.</li>
           </ul>
         </Section>
 
