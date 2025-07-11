@@ -113,10 +113,26 @@ const RidezzyPremiumScooter = () => {
   ];
 
   const heroImages = [
-    { src: "/src/assets/RidezzyScooter.png", alt: "Front View", label: "Front View" },
-    { src: "/src/assets/hero image.jpg", alt: "Side View", label: "Side View" },
-    { src: "/src/assets/buy-pulse-hero.png", alt: "Detail View", label: "Detail View" },
-    { src: "/src/assets/about-scooter.png", alt: "Features", label: "Features" }
+    {
+      src: '/assets/buy-pulse-hero.png',
+      alt: 'Front View',
+      label: 'Front View'
+    },
+    {
+      src: '/assets/about-scooter.png',
+      alt: 'Side View',
+      label: 'Side View'
+    },
+    {
+      src: '/assets/RidezzyScooter.png',
+      alt: 'Rear View',
+      label: 'Rear View'
+    },
+    {
+      src: '/assets/hero image.jpg',
+      alt: 'Top View',
+      label: 'Top View'
+    }
   ];
 
   const vehicleFeatures = [
@@ -558,14 +574,11 @@ const RidezzyPremiumScooter = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -10 }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
-                <div className="relative z-10">
-                  <div className={`inline-flex p-3 lg:p-4 rounded-full bg-gradient-to-r ${feature.color} mb-4 lg:mb-6`}>
-                    <feature.icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">{feature.title}</h3>
-                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{feature.description}</p>
+                <div className={`inline-flex p-3 lg:p-4 rounded-full bg-gradient-to-r ${feature.color} mb-4 lg:mb-6`}>
+                  <feature.icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                 </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">{feature.title}</h3>
+                <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
