@@ -19,9 +19,9 @@ export default function Footer() {
           <ul className="space-y-1 text-sm text-gray-600">
             <li><Link to="/" className="hover:text-yellow-500 transition cursor-pointer">Home</Link></li>
             <li><Link to="/about" className="hover:text-yellow-500 transition cursor-pointer">About</Link></li>
+            <li><Link to="/advertising" className="hover:text-yellow-500 transition cursor-pointer">Advertise</Link></li>
+            <li><Link to="/environment" className="hover:text-yellow-500 transition cursor-pointer">Environment</Link></li>
             <li><Link to="/contact" className="hover:text-yellow-500 transition cursor-pointer">Contact Us</Link></li>
-            <li><Link to="/pulse" className="hover:text-yellow-500 transition cursor-pointer">Pulse</Link></li>
-            <li><Link to="/blog" className="hover:text-yellow-500 transition cursor-pointer">Blogs</Link></li>
           </ul>
         </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
             Address
           </h4>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Plot no 7, B2 block, Sewak park,<br />
+            A-1/3 Sewak park,<br />
             Uttam Nagar, Delhi 110059, India
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function Footer() {
             Get in Touch
           </h4>
           <p className="text-sm text-gray-600 leading-relaxed">
-            support.cell@ridezzy.com<br />
+            support@ridezzy.com<br />
             +91 9220424574
           </p>
         </div>

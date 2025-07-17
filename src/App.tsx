@@ -10,6 +10,8 @@ import PrivacyPolicy from "./policies/Privacypolicy";
 import RefundPolicy from "./policies/Refundpolicy";
 import CheckoutPage from "./components/BuyPulse";
 import BookingConfirmation from "./components/BookingConfirmation";
+import EnvironmentPage from "./environment1";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
         <Route path="/terms-of-service" element={<TOS />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Placeholder for Privacy Policy */}
         <Route path="/refund-policy" element={<RefundPolicy />} /> {/* Placeholder for Advertisement page */}
+        <Route path="/environment" element={<EnvironmentPage />} /> {/* Placeholder for Environment page */}
+        
+        {/* Catch-all route for 404 pages */}
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </Router>

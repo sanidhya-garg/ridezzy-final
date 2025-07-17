@@ -8,9 +8,11 @@ const Navbar = () => {
 
   const navItems = [
     { name: "About", path: "/about" },
-    { name: "Pulse", path: "/pulse" },
-    { name: "Buy Pulse", path: "/buy-pulse" },
+    {name: "Advertise", path: "/advertising"},
+    {name: "Environment", path: "/environment"},
     { name: "Contact", path: "/contact" }
+
+
   ];
 
   return (
