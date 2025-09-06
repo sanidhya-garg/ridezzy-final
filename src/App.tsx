@@ -15,6 +15,7 @@ import EnvironmentPage from "./environment1";
 import NotFound from "./components/NotFound";
 import CareersPage from "./components/CareersPage";
 import AdminDashboard from "./components/AdminDashboard";
+import AppPage from "./pages/AppPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<RidezzyLanding />} />
         <Route path="/about" element={<AboutUs />} />  {/* Corrected this line */}
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/app" element={<AppPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/pulse" element={<BanaPage />} /> {/* Placeholder for Bana page */}

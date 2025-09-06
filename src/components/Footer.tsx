@@ -54,11 +54,21 @@ export default function Footer() {
             Follow Us
           </h4>
           <div className="flex gap-4 text-gray-600 text-xl">
-            <i className="fab fa-facebook-f hover:text-yellow-500 transition cursor-pointer"></i>
-            <i className="fab fa-instagram hover:text-yellow-500 transition cursor-pointer"></i>
-            <i className="fab fa-linkedin-in hover:text-yellow-500 transition cursor-pointer"></i>
-            <i className="fab fa-twitter hover:text-yellow-500 transition cursor-pointer"></i>
-            <i className="fab fa-youtube hover:text-yellow-500 transition cursor-pointer"></i>
+            <a href="https://www.facebook.com/share/1KBBzAeHb3/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook-f hover:text-yellow-500 transition cursor-pointer"></i>
+            </a>
+            <a href="https://www.instagram.com/ridezzy_electric?igsh=OHZrdTRiY3NyZDN0" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram hover:text-yellow-500 transition cursor-pointer"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/ridezzylogistics/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-linkedin-in hover:text-yellow-500 transition cursor-pointer"></i>
+            </a>
+            <a href="https://x.com/Ridezzy?t=d9cEBfS6MGbhfY0-zhHJiQ&s=08" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-x-twitter hover:text-yellow-500 transition cursor-pointer"></i>
+            </a>
+            <a href="https://youtube.com/@ridezzy_travel?si=-5xudU5V8v4cGLa1" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-youtube hover:text-yellow-500 transition cursor-pointer"></i>
+            </a>
           </div>
         </div>
       </div>

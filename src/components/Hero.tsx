@@ -1,96 +1,67 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import bgImage from "../assets/hero image.jpg";
-
-// Moved outside to avoid being a dependency in useEffect
-const words = [
-  "Go Quick in E-Commerce",
-  "Powering EV Logistics",
-  "Scale Your Fleet with Ease",
-];
+import { ArrowRight } from "lucide-react";
+import heroImage from "../assets/RidezzyScooter.png";
 
 const HeroSection = () => {
-  const [index, setIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-
-  useEffect(() => {
-    const currentWord = words[index];
-    if (charIndex < currentWord.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + currentWord[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 80);
-      return () => clearTimeout(timeout);
-    } else {
-      const timeout = setTimeout(() => {
-        setDisplayedText("");
-        setCharIndex(0);
-        setIndex((prev) => (prev + 1) % words.length);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    }
-  }, [charIndex, index]);
-
   return (
-    <div
-      className="relative h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-between px-6 py-6"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      {/* Centered Hero Content (text aligned left on desktop) */}
-      <div className="flex-1 flex items-center">
-        <div className="z-10 max-w-2xl text-left mx-auto md:mx-0">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
-            {displayedText}
-            <span className="animate-pulse">|</span>
-          </h1>
+    <section className="relative min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center min-h-screen py-20">
+          {/* Left Content */}
+          <div className="flex-1 lg:pr-12 text-center lg:text-left">
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+            >
+              The Future of
+              <br />
+              <span className="text-yellow-500">EV Logistics</span>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.2, duration: 0.6 }}
-            className="text-lg text-gray-700 font-medium mt-2"
-          >
-            Accelerating the future of deliveries with seamless efficiency and
-            reliability. Experience logistics designed to keep pace with the
-            speed of modern commerce.
-          </motion.p>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl text-gray-600 mb-10 max-w-xl"
+            >
+              Transform your delivery business with zero-emission electric vehicles. 
+              Start earning more today.
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <button className="group bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-10 py-5 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto lg:mx-0">
+                Get Started Now
+                <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Right Content - Simple Image */}
+          <div className="flex-1 lg:pl-12 mt-16 lg:mt-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              <img
+                src={heroImage}
+                alt="Ridezzy EV Scooter"
+                className="w-full h-auto max-w-lg mx-auto"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
-
-      {/* Bottom Stats */}
-      <div className="grid grid-cols-3 gap-4 z-10 mb-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="border-2 border-black/20 rounded-lg p-4 text-center bg-white/50 backdrop-blur-md"
-        >
-          <div className="text-yellow-300 text-2xl font-bold mb-1">200</div>
-          <div className="text-black text-sm">Fleet Size</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="border-2 border-black/20 rounded-lg p-4 text-center bg-white/50 backdrop-blur-md"
-        >
-          <div className="text-yellow-300 text-2xl font-bold mb-1">28</div>
-          <div className="text-black text-sm">Pincodes Served</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="border-2 border-black/20 rounded-lg p-4 text-center bg-white/50 backdrop-blur-md"
-        >
-          <div className="text-yellow-300 text-2xl font-bold mb-1">1500+</div>
-          <div className="text-black text-sm">Deliveries</div>
-        </motion.div>
-      </div>
-    </div>
+    </section>
   );
 };
 

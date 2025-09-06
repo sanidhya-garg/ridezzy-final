@@ -118,46 +118,46 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white py-12">
+    <div className="bg-gradient-to-br from-gray-50 to-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Get in <span className="text-yellow-500">Touch</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             At Ridezzy, we believe in the power of collaboration to bring about big changes. 
             Join us in building sustainable and efficient urban mobility.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Section - Contact Info & Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            {/* Contact Information Cards - More Compact */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            {/* Contact Information Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow"
+                className="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center hover:shadow-lg transition-shadow"
               >
-                <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <Mail className="w-4 h-4 text-yellow-600" />
+                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-6 h-6 text-yellow-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm">Email</h3>
-                <p className="text-gray-600 text-xs">contact@ridezzy.com</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
+                <p className="text-gray-600 text-sm">contact@ridezzy.com</p>
               </motion.div>
 
               <motion.div
@@ -165,13 +165,13 @@ const ContactUs: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow"
+                className="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center hover:shadow-lg transition-shadow"
               >
-                <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <Phone className="w-4 h-4 text-yellow-600" />
+                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-6 h-6 text-yellow-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm">Phone</h3>
-                <p className="text-gray-600 text-xs">+91 98765 43210</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
+                <p className="text-gray-600 text-sm">+91 98765 43210</p>
               </motion.div>
 
               <motion.div
@@ -179,13 +179,13 @@ const ContactUs: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow"
+                className="bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center hover:shadow-lg transition-shadow"
               >
-                <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <MapPin className="w-4 h-4 text-yellow-600" />
+                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-6 h-6 text-yellow-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm">Location</h3>
-                <p className="text-gray-600 text-xs">Mumbai, India</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
+                <p className="text-gray-600 text-sm">Mumbai, India</p>
               </motion.div>
             </div>
 
@@ -195,19 +195,19 @@ const ContactUs: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg border border-gray-200"
+              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200"
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Send us a message</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
               
               {/* Success/Error Messages */}
               {submitStatus === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3"
+                  className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3"
                 >
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <p className="text-green-800 text-sm">Thank you! Your message has been sent successfully.</p>
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <p className="text-green-800">Thank you! Your message has been sent successfully.</p>
                 </motion.div>
               )}
 
@@ -215,15 +215,15 @@ const ContactUs: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3"
+                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3"
                 >
-                  <AlertCircle className="w-4 h-4 text-red-600" />
-                  <p className="text-red-800 text-sm">There was an error sending your message. Please try again.</p>
+                  <AlertCircle className="w-5 h-5 text-red-600" />
+                  <p className="text-red-800">There was an error sending your message. Please try again.</p>
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <input
                       type="text"
@@ -231,13 +231,13 @@ const ContactUs: React.FC = () => {
                       value={formData.fullName}
                       onChange={handleChange}
                       placeholder="Full Name*"
-                      className={`w-full p-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
+                      className={`w-full p-4 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
                         errors.fullName ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                       }`}
                       required
                     />
                     {errors.fullName && (
-                      <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>
+                      <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
                     )}
                   </div>
 
@@ -248,18 +248,18 @@ const ContactUs: React.FC = () => {
                       value={formData.mobile}
                       onChange={handleChange}
                       placeholder="Mobile Number*"
-                      className={`w-full p-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
+                      className={`w-full p-4 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
                         errors.mobile ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                       }`}
                       required
                     />
                     {errors.mobile && (
-                      <p className="mt-1 text-xs text-red-600">{errors.mobile}</p>
+                      <p className="mt-1 text-sm text-red-600">{errors.mobile}</p>
                     )}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <input
                       type="email"
@@ -267,13 +267,13 @@ const ContactUs: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Email*"
-                      className={`w-full p-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
+                      className={`w-full p-4 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
                         errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                       }`}
                       required
                     />
                     {errors.email && (
-                      <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
                     )}
                   </div>
 
@@ -284,7 +284,7 @@ const ContactUs: React.FC = () => {
                       value={formData.location}
                       onChange={handleChange}
                       placeholder="Location"
-                      className="w-full p-3 border border-gray-300 rounded-lg transition-colors hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="w-full p-4 border border-gray-300 rounded-lg transition-colors hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     />
                   </div>
                 </div>
@@ -296,13 +296,13 @@ const ContactUs: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Subject*"
-                    className={`w-full p-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
+                    className={`w-full p-4 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
                       errors.subject ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                     }`}
                     required
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-xs text-red-600">{errors.subject}</p>
+                    <p className="mt-1 text-sm text-red-600">{errors.subject}</p>
                   )}
                 </div>
 
@@ -312,30 +312,30 @@ const ContactUs: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Message*"
-                    rows={4}
-                    className={`w-full p-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none ${
+                    rows={5}
+                    className={`w-full p-4 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none ${
                       errors.message ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                     }`}
                     required
                   />
                   {errors.message && (
-                    <p className="mt-1 text-xs text-red-600">{errors.message}</p>
+                    <p className="mt-1 text-sm text-red-600">{errors.message}</p>
                   )}
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-yellow-500 text-black py-4 px-6 rounded-lg font-semibold hover:bg-yellow-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
                       <span>Sending...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-5 h-5" />
                       <span>Send Message</span>
                     </>
                   )}
@@ -351,7 +351,7 @@ const ContactUs: React.FC = () => {
             viewport={{ once: true }}
             className="h-full"
           >
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 h-full min-h-[500px]">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 h-full min-h-[600px]">
               <iframe
                 title="Ridezzy Office Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609930698!2d72.74109902663262!3d19.082197839528998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63ab1b4c3b9%3A0x7b82a91bfcf675de!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1610000000000!5m2!1sen!2sin"
